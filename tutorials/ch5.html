@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 5 章 · 协作剧场：一个人演完团队协作</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="page">
+
+  <!-- git 提交图导航 -->
+  <div class="ggwrap">
+  <nav aria-label="课程进度">
+    <ul class="gg" style="--p:68.75%">
+      <li class="done"><a href="ch0.html">0</a><span class="gg-label">环境准备</span></li>
+      <li class="done"><a href="ch1.html">1</a><span class="gg-label">第一次魔法</span></li>
+      <li class="done"><a href="ch2.html">2</a><span class="gg-label">对话姿势</span></li>
+      <li class="done"><a href="ch3.html">3</a><span class="gg-label">git 时光机</span></li>
+      <li class="done"><a href="ch4.html">4</a><span class="gg-label">数据看板</span></li>
+      <li class="cur"><a href="ch5.html" aria-current="page">5</a><span class="gg-label">协作剧场</span></li>
+      <li><a href="ch6.html">6</a><span class="gg-label">流程全景</span></li>
+      <li><a href="ch7.html">7</a><span class="gg-label">毕业项目</span></li>
+    </ul>
+  </nav>
+  </div>
+
+  <header class="chap-head">
+    <p class="eyebrow">Chapter 5 · 第 5 章</p>
+    <h1>协作剧场：一个人演完团队协作</h1>
+    <p><span class="hash-chip"><b>8e4f2b7</b> · ch5</span><span class="hash-chip">main</span></p>
+    <p class="lead">真实团队最怕的事：两个人同时改同一个文件，把对方的活儿覆盖掉。这一章你分饰 <b>Alice 和 Bob</b> 两个角色，亲手制造一次真实的<b>合并冲突</b>——再亲手解决它。演完这出戏，你就懂了全世界程序员天天在干什么。</p>
+    <p class="meta-line">⏱ 约 60 分钟 · 前置：第 4 章 · 需要一个免费 GitHub 账号（现注册即可）</p>
+  </header>
+
+  <!-- ============ 01 ============ -->
+  <section>
+    <h2><span class="sec-no">01</span>分支：合同草稿与原件</h2>
+    <p>先解决一个概念：什么是<b>分支（branch）</b>。</p>
+    <p>你改一份重要合同，不会直接在原件上涂改——原件随时要能用。你会<b>复印一份当草稿</b>，改到满意再把定稿替换回原件。git 分支就是这件事：<code>main</code> 是<b>原件</b>（随时能跑、随时能给人看的版本），分支是<b>草稿</b>（试验新功能，改砸了原件毫发无伤）。改好了，把草稿<b>合并（merge）</b>回原件。</p>
+    <div class="box box-tip">
+      <h3>类比时刻：剧场与分身</h3>
+      <p>真实的团队里，Alice 和 Bob 是两台电脑上的两个人：Alice 开个分支做新功能，Bob 同时在 main 上修小问题，两人互不打扰，最后把成果合到一起。今天你一个人<b>分饰两角</b>——用两个文件夹扮演两台电脑，把整场戏自己演一遍。演技不重要，重要的是走位：每一步都问自己「<b>我现在是谁、在哪个文件夹、在哪条分支</b>」。</p>
+    </div>
+    <p>那两人怎么「交换代码」？靠一台<b>云端的仓库</b>。这就请出本章第二位主角。</p>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section>
+    <h2><span class="sec-no">02</span>给项目安个云盘：GitHub</h2>
+    <p>GitHub 是全世界最大的代码云盘（微软家的，免费），干两件事：<b>备份</b>（电脑坏了代码还在）和<b>中转</b>（多台电脑、多个人的仓库在这里会师）。</p>
+    <p>用浏览器打开 <code>github.com</code>，注册一个免费账号（用户名以后会出现在你的仓库地址里，起个顺眼的）。然后点右上角 <b>+</b> → <b>New repository</b>：名字填 <code>vibe-coding-academy</code>，选 <b>Private</b>（你的私有仓库），然后<b>什么都不要再勾</b>——不要 README、不要 .gitignore，我们本地全有——点 <b>Create repository</b>。</p>
+    <p>现在把本地仓库的「收件地址」改成你自己的仓库，并把全部存档推上云：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 在 vibe-coding-academy 目录下</span></div>
+      <pre><span class="cmt"># 你克隆课程时 origin 指向课程官方仓库（只能拉、不能推），换成你自己的：</span>
+<span class="cmd">git remote set-url origin https://github.com/你的用户名/vibe-coding-academy.git</span>
+<span class="cmt"># 首次推送。-u 的意思是「记住这条线，以后 push/pull 不用再写全名」</span>
+<span class="cmd">git push -u origin main</span>
+<span class="out">Enumerating objects: …
+Writing objects: 100%
+（第一次 push 会弹出浏览器让你登录 GitHub，点 Authorize 授权即可，之后电脑会记住）</span></pre>
+    </div>
+    <p>刷新 GitHub 页面——你的仓库里躺着从第 3 章到现在的全部存档。<b>这台「云盘」从此就是团队的会师地点。</b></p>
+  </section>
+
+  <!-- ============ 03 ============ -->
+  <section>
+    <h2><span class="sec-no">03</span>开场：两个文件夹，两位演员</h2>
+    <p>现在搭建剧场：从你的云端仓库克隆出两份，当作 Alice 和 Bob 的两台电脑。<b>原来的 vibe-coding-academy 文件夹功成身退</b>（内容已在云端），接下来的戏都在新文件夹里演：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 回到 vibe-coding-academy 的上一级目录</span></div>
+      <pre><span class="cmt"># 退到上一级目录（放课程文件夹的地方）</span>
+<span class="cmd">cd ..</span>
+<span class="cmt"># 从云端克隆两份，分别命名为 alice 和 bob——两台「员工电脑」</span>
+<span class="cmd">git clone https://github.com/你的用户名/vibe-coding-academy.git alice</span>
+<span class="cmd">git clone https://github.com/你的用户名/vibe-coding-academy.git bob</span>
+<span class="out">Cloning into 'alice'… done.
+Cloning into 'bob'… done.</span></pre>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 720 190" role="img" aria-label="剧场示意图：云端仓库居中，Alice 和 Bob 两台电脑分别与它推送和拉取">
+        <defs>
+          <filter id="s5a" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1F3A4D" flood-opacity="0.12"/>
+          </filter>
+          <marker id="a5" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#E8630A"/></marker>
+        </defs>
+        <rect x="290" y="22" width="140" height="66" rx="14" fill="#1E2A38" filter="url(#s5a)"/>
+        <text x="360" y="50" text-anchor="middle" font-size="24">☁️</text>
+        <text x="360" y="74" text-anchor="middle" font-size="12.5" fill="#DCE6F2" font-weight="700">GitHub 云端仓库</text>
+        <rect x="70" y="110" width="170" height="60" rx="14" fill="#FFFFFF" filter="url(#s5a)"/>
+        <text x="155" y="136" text-anchor="middle" font-size="20">👩‍💻</text>
+        <text x="155" y="158" text-anchor="middle" font-size="12.5" fill="#1F3A4D" font-weight="700">alice 文件夹 · Alice</text>
+        <rect x="480" y="110" width="170" height="60" rx="14" fill="#FFFFFF" filter="url(#s5a)"/>
+        <text x="565" y="136" text-anchor="middle" font-size="20">👨‍💻</text>
+        <text x="565" y="158" text-anchor="middle" font-size="12.5" fill="#1F3A4D" font-weight="700">bob 文件夹 · Bob</text>
+        <path d="M 155 110 C 180 70 250 55 288 55" stroke="#E8630A" stroke-width="2.5" fill="none" marker-end="url(#a5)"/>
+        <text x="196" y="66" font-size="11" fill="#4A6375">push 提交 / pull 拉取</text>
+        <path d="M 565 110 C 540 70 470 55 432 55" stroke="#E8630A" stroke-width="2.5" fill="none" marker-end="url(#a5)"/>
+        <text x="470" y="66" font-size="11" fill="#4A6375">push 提交 / pull 拉取</text>
+      </svg>
+      <figcaption>两位演员不直接传文件——都通过云端仓库会师。这就是「中转站」的含义</figcaption>
+    </figure>
+    <p>化妆间规则只有一条：<b>换角色先换文件夹</b>（<code>cd alice</code> / <code>cd bob</code>），进了化妆间再看一眼提示符，确认自己「是谁」。</p>
+  </section>
+
+  <!-- ============ 04 ============ -->
+  <section>
+    <h2><span class="sec-no">04</span>第一幕 · Alice：开分支做新功能</h2>
+    <p>需求来了：给看板加一个「城市 Top 10」榜。Alice 不动 main，先开草稿分支：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · Alice（cd alice 进入）</span></div>
+      <pre><span class="cmt"># 开一条新分支并站上去：switch 是「切换」，-c 是「新建」</span>
+<span class="cmd">git switch -c feature/city-top10</span>
+<span class="out">Switched to a new branch 'feature/city-top10'</span>
+<span class="cmt"># 分支名习惯用 feature/功能名，一眼看出这条草稿是干什么的</span></pre>
+    </div>
+    <p>然后干第 4 章课后练习同款的事——在 alice 的 example 目录启动 AI（<code>cd example</code> 再 <code>claude</code>），说：</p>
+    <div class="chat">
+      <p class="chat-user">在看板里加一个「销售额 Top 10 城市」条形图，随筛选器联动；同时把页面标题改成「📊 2024 年销售看板（城市榜版）」。改完自己确认能跑。</p>
+      <p class="chat-ai">已添加城市 Top 10 图并更新标题，自测通过，请刷新看板验收。</p>
+    </div>
+    <p>验收满意，Alice 存档（在 alice 目录、仍在 feature 分支上）：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · Alice（先 /exit 退出 AI，回到 alice 根目录）</span></div>
+      <pre><span class="cmd">git add example/dashboard.py</span>
+<span class="cmd">git commit -m "新增城市 Top 10 榜，标题标注城市榜版"</span>
+<span class="out">[feature/city-top10 3d7a1c9] 新增城市 Top 10 榜，标题标注城市榜版</span></pre>
+    </div>
+    <p>注意：这个存档<b>只存在于草稿分支上</b>，main 此刻还不知道它。Alice 不着急合并——她打算歇口气。而在这段时间里，Bob 动手了。</p>
+  </section>
+
+  <!-- ============ 05 ============ -->
+  <section>
+    <h2><span class="sec-no">05</span>第二幕 · Bob：在 main 上改标题</h2>
+    <p>另一边，老板觉得看板标题不够正式，让 Bob 把标题改成「📊 2024 年度销售看板」。Bob 不需要新功能，直接在 main 上改这一行小字：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · Bob（新开一个终端窗口：cd bob）</span></div>
+      <pre><span class="cmt"># 用记事本打开看板文件，找到第一处 st.title 那行，照下面改：</span>
+<span class="cmd">notepad example\dashboard.py</span>
+<span class="out">改这一行（只动引号里的字）：
+  旧：st.title("📊 2024 年销售看板")
+  新：st.title("📊 2024 年度销售看板")
+改完保存关闭（Ctrl+S）</span>
+<span class="cmd">git add example/dashboard.py && git commit -m "标题改为 2024 年度销售看板"</span>
+<span class="cmd">git push</span>
+<span class="out">Writing objects: 100%
+（Bob 的改动已上云。此刻云端 main 的标题，和 Alice 草稿里的标题，已经不是同一句话了——雷已埋下）</span></pre>
+    </div>
+    <p>Bob 全程不知道 Alice 在干什么——<b>这正是并行工作的常态</b>。冲突不是谁的错，是并行的代价。</p>
+  </section>
+
+  <!-- ============ 06 ============ -->
+  <section>
+    <h2><span class="sec-no">06</span>第三幕 · 会师：merge 撞出冲突</h2>
+    <p>Alice 休假归来，决定把城市榜合并进 main。职业习惯：<b>合并前先拉取云端最新进度</b>（不然她根本不知道 Bob 改过东西）：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · Alice（回到 alice 根目录）</span></div>
+      <pre><span class="cmt"># ① 回到 main（原件）</span>
+<span class="cmd">git switch main</span>
+<span class="cmt"># ② 拉取云端最新进度——把 Bob 的标题改动拿下来</span>
+<span class="cmd">git pull</span>
+<span class="out">Updating 8e4f2b7..a1c93d5
+ 1 file changed（Bob 的改动到手，本地 main 已与云端同步）</span>
+<span class="cmt"># ③ 合并自己的草稿分支</span>
+<span class="cmd">git merge feature/city-top10</span>
+<span class="err">CONFLICT (content): Merge conflict in example/dashboard.py
+Automatic merge failed; fix conflicts and then commit the result.</span></pre>
+    </div>
+    <p><b>冲突发生了，恭喜！</b>原因一眼看穿：Alice 和 Bob 都改了<b>同一行标题</b>，git 不知道该听谁的——它不敢替你做主，把决定权连同现场一起交给你。用记事本打开文件，冲突现场长这样：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">example/dashboard.py · 冲突现场（notepad example\dashboard.py）</span></div>
+      <pre><span class="out">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span>
+<span class="ok">st.title("📊 2024 年度销售看板")        ← 你所在的 main（Bob 的版本）</span>
+<span class="out">=======</span>
+<span class="ok">st.title("📊 2024 年销售看板（城市榜版）")  ← 被合并的分支（Alice 的版本）</span>
+<span class="out">&gt;&gt;&gt;&gt;&gt;&gt;&gt; feature/city-top10</span></pre>
+    </div>
+    <p>三条分隔线把文件劈成两半：<b>HEAD 这边是你所在分支的版本，>>>>>>> 那边是合并进来的版本</b>。解决冲突 = 你来当裁判，改成<b>最终该有的样子</b>——两边的心意其实可以都要：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">手动改完后的这一行（把三行现场改成一行，删除所有 &lt; = &gt; 标记）</span></div>
+      <pre><span class="ok">st.title("📊 2024 年度销售看板（城市榜版）")</span></pre>
+    </div>
+    <p>保存关闭，然后照常存档收尾——对 git 来说，解决冲突就是「一次普通的修改 + 提交」：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · Alice</span></div>
+      <pre><span class="cmd">git add example/dashboard.py</span>
+<span class="cmd">git commit -m "合并城市榜：标题采用年度+城市榜版"</span>
+<span class="out">[main 5f8d201] 合并城市榜：标题采用年度+城市榜版</span>
+<span class="cmt"># 推上云，剧场谢幕；用完的草稿分支顺手拆台</span>
+<span class="cmd">git push</span>
+<span class="cmd">git branch -d feature/city-top10</span></pre>
+    </div>
+    <figure class="fig">
+      <svg viewBox="0 0 720 170" role="img" aria-label="分支合并图：main 一条线上有 Bob 的提交，feature 分支从旁分出、带 Alice 的提交，最后合并回 main">
+        <defs>
+          <filter id="s5b" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1F3A4D" flood-opacity="0.12"/>
+          </filter>
+        </defs>
+        <line x1="70" y1="110" x2="650" y2="110" stroke="#E5DCCB" stroke-width="4"/>
+        <line x1="70" y1="110" x2="620" y2="110" stroke="#2E7D6B" stroke-width="4"/>
+        <path d="M 240 110 C 290 110 290 45 340 45 L 430 45" stroke="#E8630A" stroke-width="4" fill="none"/>
+        <path d="M 430 45 C 480 45 480 110 530 110" stroke="#E8630A" stroke-width="4" fill="none"/>
+        <circle cx="70" cy="110" r="14" fill="#FFFFFF" stroke="#E5DCCB" stroke-width="4"/>
+        <circle cx="240" cy="110" r="14" fill="#FFFFFF" stroke="#2E7D6B" stroke-width="4"/>
+        <circle cx="470" cy="110" r="14" fill="#FFFFFF" stroke="#2E7D6B" stroke-width="4"/>
+        <circle cx="340" cy="45" r="14" fill="#FFFFFF" stroke="#E8630A" stroke-width="4"/>
+        <circle cx="430" cy="45" r="14" fill="#FFFFFF" stroke="#E8630A" stroke-width="4"/>
+        <circle cx="530" cy="110" r="16" fill="#E8630A" filter="url(#s5b)"/>
+        <text x="70" y="148" text-anchor="middle" font-size="11.5" fill="#8A8175">会师起点</text>
+        <text x="240" y="148" text-anchor="middle" font-size="11.5" fill="#2E7D6B" font-weight="700">Bob：改标题</text>
+        <text x="470" y="148" text-anchor="middle" font-size="11.5" fill="#2E7D6B" font-weight="700">Alice：拉取</text>
+        <text x="385" y="22" text-anchor="middle" font-size="11.5" fill="#E8630A" font-weight="700">feature/city-top10：城市榜 + 标题</text>
+        <text x="530" y="148" text-anchor="middle" font-size="11.5" fill="#E8630A" font-weight="700">merge（冲突→解决）</text>
+        <rect x="555" y="52" width="62" height="24" rx="12" fill="#E8630A"/>
+        <text x="586" y="69" text-anchor="middle" font-size="11" fill="#fff" font-family="Consolas,monospace">HEAD</text>
+      </svg>
+      <figcaption>一条 main（青瓷绿），一条草稿分支（橙）。汇合的那个点，就是冲突被你亲手解决的地方</figcaption>
+    </figure>
+    <div class="box box-tip">
+      <h3>冲突不是事故，是制度</h3>
+      <p>注意 git 的立场：<b>它绝不等冲突发生才提醒你，也绝不擅自动你一个字</b>。两个版本打架时，它把现场保护起来，停下来等裁判。世界上每天发生上亿次合并，绝大多数不冲突；冲突的那些，最终都由一个「懂业务的人」按了裁决键——今天那个人是你。</p>
+    </div>
+  </section>
+
+  <!-- ============ 07 ============ -->
+  <section>
+    <h2><span class="sec-no">07</span>团队三约定</h2>
+    <p>把这出戏浓缩成三条团队铁律（真实团队全都这么干）：</p>
+    <table>
+      <thead><tr><th>约定</th><th>做法</th><th>防什么</th></tr></thead>
+      <tbody>
+        <tr><td>开工先 pull</td><td>每天动代码前，先 <code>git pull</code> 拉最新</td><td>在旧版本上干半天活，合并时处处冲突</td></tr>
+        <tr><td>干完就 push</td><td>存档（commit）完随手 <code>git push</code></td><td>电脑罢工丢进度；同事拿不到你的成果</td></tr>
+        <tr><td>新功能开分支</td><td>正经改动一律 <code>git switch -c feature/xxx</code>，小步提交</td><td>main 随时被改坏；改动太大冲突难解</td></tr>
+      </tbody>
+    </table>
+    <p>三条合起来就是一句话：<b>main 永远可用，草稿随时可弃，云端永远最新</b>。</p>
+  </section>
+
+  <!-- ============ 三件套 ============ -->
+  <section>
+    <h2><span class="sec-no">08</span>课后三件套</h2>
+
+    <div class="box box-do">
+      <h3>动手做：二轮演出「页脚之争」</h3>
+      <p>这出戏的续集，冲突点换到看板页脚。剧情：Bob 开分支 <code>feature/footer</code>，在看板末尾加一行 <code>st.caption("数据截至 2024-12-31")</code>（记事本或 AI 都行）；同一时间 Alice 在 main 上给看板末尾加了 <code>st.caption("本看板由 AI 协助生成")</code> 并 push。然后 Bob 回 main 拉取、合并——冲突会在「看板末尾相邻的位置」爆发，把两句都留下来，完成合并。</p>
+      <details>
+        <summary>点开看参考走位</summary>
+        <div class="term">
+          <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 摘要（谁、在哪个文件夹、敲什么）</span></div>
+          <pre><span class="cmt"># Bob（bob 文件夹，先拉最新——铁律第一条）：</span>
+<span class="cmd">git pull</span>
+<span class="cmd">git switch -c feature/footer</span>
+<span class="cmt">在 example/dashboard.py 末尾加一行 st.caption("数据截至 2024-12-31")，然后：</span>
+<span class="cmd">git add example/dashboard.py && git commit -m "页脚注明数据截止日期"</span>
+<span class="cmt"># Alice（alice 文件夹）：</span>
+<span class="cmd">git pull</span>
+<span class="cmt">在 example/dashboard.py 末尾加一行 st.caption("本看板由 AI 协助生成")，然后：</span>
+<span class="cmd">git add example/dashboard.py && git commit -m "页脚署名 AI 协助" && git push</span>
+<span class="cmt"># Bob 合并：</span>
+<span class="cmd">git switch main && git pull</span>
+<span class="cmd">git merge feature/footer</span>
+<span class="err">CONFLICT (content): Merge conflict in example/dashboard.py</span>
+<span class="cmt">记事本打开，两行 caption 都保留（删干净 &lt; = &gt; 标记），然后：</span>
+<span class="cmd">git add example/dashboard.py && git commit -m "合并页脚：截止日期+AI署名" && git push</span></pre>
+        </div>
+        <p>演完用 <code>git log --oneline --graph</code> 看一眼——你的提交历史里出现了真正的「分叉再汇合」。</p>
+      </details>
+    </div>
+
+    <div class="box box-quiz">
+      <h3>自测 3 题（点击展开答案）</h3>
+      <details><summary>1. 分支和 main 的关系，用合同的话怎么说？</summary><p>main 是原件（随时可用、对外展示的正式版），分支是复印件草稿（随便涂改、随时丢弃）。草稿定稿后 merge 回原件。新功能开分支，保证 main 永远处于「能跑」的状态。</p></details>
+      <details><summary>2. 冲突现场里 &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD 和 &gt;&gt;&gt;&gt;&gt;&gt;&gt; 两段各是什么？解决冲突本质上是在做什么？</summary><p>HEAD 段是你当前所在分支（main）的版本，&gt;&gt;&gt;&gt;&gt;&gt;&gt; 段是被合并进来的分支版本。解决冲突 = 把这段现场改写成「最终该有的样子」（常是两边意图的合并），删掉所有标记行，然后 add + commit。git 只负责保护现场，裁决永远是人。</p></details>
+      <details><summary>3. 为什么 Alice 合并前要先 git pull？</summary><p>并行协作时你不知道别人推了什么。先 pull 把云端最新拿到本地，冲突在本地暴露、本地解决；不 pull 就合并，你的 main 还停在旧进度，push 时照样会被云端拒绝——问题不会消失，只会换个地方炸。开工先 pull，是团队第一条铁律。</p></details>
+    </div>
+
+    <div class="box box-aid">
+      <h3>翻车急救箱</h3>
+      <p><b>① push 报 rejected / non-fast-forward</b><br>云端有你没有的存档（别人先推了，或你在别处推过）。按铁律办：<code>git pull</code> 拉下来（有冲突就按第三幕解决）再 <code>git push</code>。</p>
+      <p><b>② 冲突现场看不懂、越改越乱，想反悔</b><br>可以整场撤销：<code>git merge --abort</code> 回到合并之前的样子，喘口气再来。草稿分支还在，什么都没丢。</p>
+      <p><b>③ push 弹出登录窗口失败 / 反复要求密码</b><br>Windows 上首次 push 会弹浏览器的 GitHub 授权页，跟着点 Authorize 即可。没弹窗却报 403：多半登录的是另一个账号，去「Windows 凭据管理器」删掉 github.com 的旧凭据再试。</p>
+      <p><b>④ clone 报 repository not found</b><br>三个嫌疑：仓库地址拼错；仓库是 Private 而这台「电脑」没登录；你登错账号。逐个对——尤其 alice/bob 两边登录的要<b>同一个账号</b>（这出戏你一人分饰两角，不是真的两个账号）。</p>
+      <p><b>⑤ 建仓库时手滑勾了 README，push 报错</b><br>云端多了一个你本地没有的存档。最省事：把云端仓库删了（Settings → Delete）按本章重来，这次什么都不勾。</p>
+    </div>
+  </section>
+
+  <!-- 章尾导航 -->
+  <nav class="pager" aria-label="上一章下一章">
+    <a href="ch4.html"><span class="dir">← 上一章</span>第 4 章 · 从脚本到页面：数据看板</a>
+    <a class="next" href="ch6.html"><span class="dir dir-next">下一章 →</span>第 6 章 · 开发流程全景</a>
+  </nav>
+
+</main>
+</body>
+</html>
