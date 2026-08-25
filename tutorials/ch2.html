@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 2 章 · 和 AI 对话的正确姿势</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="page">
+
+  <!-- git 提交图导航 -->
+  <div class="ggwrap">
+  <nav aria-label="课程进度">
+    <ul class="gg" style="--p:31.25%">
+      <li class="done"><a href="ch0.html">0</a><span class="gg-label">环境准备</span></li>
+      <li class="done"><a href="ch1.html">1</a><span class="gg-label">第一次魔法</span></li>
+      <li class="cur"><a href="ch2.html" aria-current="page">2</a><span class="gg-label">对话姿势</span></li>
+      <li><a href="ch3.html">3</a><span class="gg-label">git 时光机</span></li>
+      <li><a href="ch4.html">4</a><span class="gg-label">数据看板</span></li>
+      <li><a href="ch5.html">5</a><span class="gg-label">协作剧场</span></li>
+      <li><a href="ch6.html">6</a><span class="gg-label">流程全景</span></li>
+      <li><a href="ch7.html">7</a><span class="gg-label">毕业项目</span></li>
+    </ul>
+  </nav>
+  </div>
+
+  <header class="chap-head">
+    <p class="eyebrow">Chapter 2 · 第 2 章</p>
+    <h1>和 AI 对话的正确姿势</h1>
+    <p><span class="hash-chip"><b>b7d42e9</b> · ch2</span><span class="hash-chip">main</span></p>
+    <p class="lead">同样的工具，有人用它十分钟出活，有人跟它吵架半小时。差别不在 AI，在<b>你说的话</b>。这一章给你一套「咒语四件套」，并在一张更真实——也就是更脏——的数据表上实战。</p>
+    <p class="meta-line">⏱ 约 45 分钟 · 前置：第 1 章</p>
+  </header>
+
+  <!-- ============ 01 ============ -->
+  <section>
+    <h2><span class="sec-no">01</span>同样的 AI，为什么有人用得好</h2>
+    <p>先看一个反面教材。假设你对 AI 说：</p>
+    <div class="chat">
+      <p class="chat-user">分析一下这个表。</p>
+      <p class="chat-ai">好的，请问：<br>① 哪个表？文件在什么路径？<br>② 你想看什么角度的「分析」？<br>③ 结果要表格、图，还是文字结论？<br>——信息不足，我只能猜，而猜，通常猜错。</p>
+    </div>
+    <p>AI 没有错——<b>这句话换成一个真人同事，他也得反问你三句</b>。问题出在指令上。用得好的那些人，只是把话说清楚了。</p>
+    <div class="box box-tip">
+      <h3>类比时刻：带新来的实习生</h3>
+      <p>把 AI 想成一位<b>刚入职的超级实习生</b>：手速极快、什么都会一点，但对你的公司、你的数据、你的口味<b>一无所知</b>。你入职第一天，希望领导怎么给你布置任务？——「这是背景，这是要办的事，这是标准，办成这样算合格」。<b>就按这个方式，布置给 AI。</b></p>
+    </div>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section>
+    <h2><span class="sec-no">02</span>咒语四件套：背景、任务、要求、验收</h2>
+    <table>
+      <thead><tr><th>件</th><th>说什么</th><th>解决什么</th><th>例句</th></tr></thead>
+      <tbody>
+        <tr><td>① 背景</td><td>我是谁、数据是什么</td><td>让它不瞎猜</td><td>「我在分析 sales_2024.xlsx，2024 全年销售流水，1000 行左右，列有：订单编号、日期、地区……」</td></tr>
+        <tr><td>② 任务</td><td>要它做的事，一个动词短语</td><td>让它不做偏</td><td>「按月份汇总销售额」</td></tr>
+        <tr><td>③ 要求</td><td>格式、风格、口径</td><td>让它一次到位</td><td>「输出成 HTML 报告，数字带千分位」</td></tr>
+        <tr><td>④ 验收</td><td>怎么算做好了</td><td>让它自查</td><td>「生成后运行脚本，确认报告能打开、月份数是 12」</td></tr>
+      </tbody>
+    </table>
+    <p>四件套不用背，往这个填空模板里套：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">咒语模板（复制去用）</span></div>
+      <pre><span class="out">背景：我在分析 __（文件名）__，这是一份 __（什么数据）__，主要有这些列：__。
+任务：请帮我 __（一个动词短语）__。
+要求：__（格式 / 风格 / 口径，比如数字千分位、中文界面、不要花哨）__。
+验收：完成后 __（跑一遍 / 打开看看 / 核对一个数字）__。</span></pre>
+    </div>
+    <p>第 1 章你已经用过一次四件套了（只是当时没点名）——回去看那条「咒语」，能对上号吗？</p>
+  </section>
+
+  <!-- ============ 03 ============ -->
+  <section>
+    <h2><span class="sec-no">03</span>新数据登场：真实的世界有点脏</h2>
+    <p>用 Excel 打开 <code>example\data\sales_2024.xlsx</code>：2024 全年、1000 多行、还是熟悉的 10 列。但这次的数据「像好几个人轮流录入过」——表面正常，暗处有雷。我们故意踩一个。</p>
+    <p>需求来了：<b>按月份看 2024 年的销售走势</b>。用四件套，在 example 目录启动 AI 后说：</p>
+    <div class="chat">
+      <p class="chat-user">背景：我在分析 data/sales_2024.xlsx，2024 全年销售流水，1000 多行，列有订单编号、订单日期、地区、城市、产品类别、产品名、销售员、数量、单价、金额。任务：按月份汇总销售额，做一个 12 个月的走势汇总。要求：生成新的 HTML 报告 monthly_2024.html，月份从 1 月到 12 月排好，数字带千分位。验收：完成后运行脚本并确认报告生成成功、月份数量是 12。</p>
+      <p class="chat-term">读取 data/sales_2024.xlsx ……<br>⚠ 发现问题：订单日期列里有一部分是 "2024/3/5" 这样的<b>文本</b>，不是真正的日期，直接按月分组会失败或漏算。<br>处理：先把文本日期统一解析成真日期，再按月汇总……</p>
+      <p class="chat-ai">已完成：日期列有 <b>59 行</b>是文本格式，我统一解析后按月汇总。2024 年 12 个月数据齐全，报告已生成 monthly_2024.html，请打开验收。</p>
+    </div>
+    <div class="box box-tip">
+      <h3>真实世界的第一课：数据是脏的</h3>
+      <p>数据分析老手有句行话：<b>八成时间在洗数据</b>。日期是文本、类别写简称、有重复、有漏填……这不是你的错，是真实世界的默认设定。好消息：以前洗数据靠手艺，现在<b>让 AI 洗，你负责验收</b>——就像刚才那样。</p>
+    </div>
+    <p>再踩第二个雷。接着对 AI 说「按产品类别汇总」——出来的结果里居然有 <b>6 个类别</b>？我们只有 3 类产品。这就是第二颗雷：<b>不同的人录入了不同的叫法</b>（「办公文具」和「文具」是同一个东西）。你不需要会修，只需要<b>看出来不对劲</b>，然后告诉它口径：</p>
+    <div class="chat">
+      <p class="chat-user">类别出现了 6 个不对，我们实际只有 3 类。口径：「文具」=「办公文具」，「设备」=「办公设备」，「消耗品」=「耗材」。统一后再重新按类别汇总。</p>
+      <p class="chat-ai">明白：已按你给的口径把 3 个简称映射回标准类别（共 40 行受影响），重新汇总完成——现在类别是 3 个。</p>
+    </div>
+    <p>注意这条咒语：没有背景（都在会话里了），只有<b>具体的纠错</b>。这正是下一节的主题。</p>
+  </section>
+
+  <!-- ============ 04 ============ -->
+  <section>
+    <h2><span class="sec-no">04</span>迭代与反馈的艺术</h2>
+    <h3>一次只提一个要求</h3>
+    <p>新手最常见的问题是攒需求：「加个月度汇总、改下配色、再按人排个名、顺便算个毛利」。AI 会全答应，然后错一半。正确姿势是<b>小步走</b>：一个需求 → 看结果 → 下一个。每个循环只要一分钟，但每个结果都在你的眼皮底下。</p>
+    <h3>反馈要具体到「怎么改」</h3>
+    <div class="chat">
+      <p class="chat-user">❌ 不对，重做。</p>
+      <p class="chat-user">✅ 条形图顺序反了，改成金额从高到低；数字字号加大一点。</p>
+    </div>
+    <p>第一句它只能重新掷骰子；第二句它一步改对。<b>你对结果不满，多半是因为要求没说出口</b>——AI 不会读心，但极其听劝。</p>
+    <h3>三个万能追问</h3>
+    <table>
+      <thead><tr><th>追问</th><th>什么时候用</th></tr></thead>
+      <tbody>
+        <tr><td>「用大白话解释这个脚本每段在干嘛，假设我不懂编程」</td><td>想看懂 AI 写的东西（你会惊讶地发现能看懂）</td></tr>
+        <tr><td>「你刚才做了哪些假设？」</td><td>结果可疑时——它会坦白「我假设了日期都是 2024 年」之类</td></tr>
+        <tr><td>「如果数据里有重复订单，你的结果会怎样？怎么发现？」</td><td>提前排雷，第 6 章会靠这类问题做「数据体检」</td></tr>
+      </tbody>
+    </table>
+    <h3>会话就是它的短期记忆</h3>
+    <p>AI 记得<b>本次会话</b>里说过的每句话（所以上面纠错不用重复背景）；但开一个新会话，它就失忆了——重新四件套。还有个反直觉的经验：<b>会话太长，它会开始犯糊涂</b>。感觉它越来越笨时，果断结束（<code>/exit</code>），重开一个，把必要背景重新交代一遍，往往立刻变聪明。</p>
+  </section>
+
+  <!-- ============ 三件套 ============ -->
+  <section>
+    <h2><span class="sec-no">05</span>课后三件套</h2>
+
+    <div class="box box-do">
+      <h3>动手做：2024 销售员排行报告</h3>
+      <p>用四件套模板，让 AI 做一份「2024 年销售员业绩排行」的 HTML 报告，要求前三名有明显的名次标识。</p>
+      <details>
+        <summary>点开看参考咒语</summary>
+        <div class="chat">
+          <p class="chat-user">背景：继续用 data/sales_2024.xlsx（你会记得列结构）。任务：按销售员汇总 2024 年销售额并排名。要求：生成 HTML 报告 salesperson_2024.html，带排行名次，前三名用醒目样式（如🥇🥈🥉或高亮），数字千分位。验收：运行脚本确认生成成功，用 Excel 里随便挑一个人的金额手算核对一次。</p>
+        </div>
+        <p>最后那句「手算核对」就是四件套里的<b>验收</b>——AI 也会算错，验收是你的活。</p>
+      </details>
+    </div>
+
+    <div class="box box-quiz">
+      <h3>自测 3 题（点击展开答案）</h3>
+      <details><summary>1. 咒语四件套是哪四样？各自解决什么问题？</summary><p>背景（防瞎猜）、任务（防跑偏）、要求（防返工）、验收（防它糊弄也防你漏看）。一句话：把「布置给新实习生的任务书」说完整。</p></details>
+      <details><summary>2. AI 汇总出的类别出现了 6 个，第一步该干什么？</summary><p>先判断「该不该是 6 个」——你比 AI 更懂业务口径（实际只有 3 类）。然后明确给出映射关系让它统一，而不是笼统说「好像不对」。看出不对劲是人的活，改是它的活。</p></details>
+      <details><summary>3. 会话越来越长，AI 开始答非所问，怎么办？</summary><p>结束当前会话，重开一个，用四件套重新交代背景和当前任务。AI 的「记忆」只在单次会话内，且太长会退化——勤开新会话不是浪费，是保养。</p></details>
+    </div>
+
+    <div class="box box-aid">
+      <h3>翻车急救箱</h3>
+      <p><b>① AI 越改越乱，回不到能跑的版本了</b><br>先试着说「回到我们上一版能跑的方案，重新来」。还不行就 <code>/exit</code> 重开会话、重述背景。治本的方案叫 git，正是下一章——以后改崩了，一个命令回到任何存档点。</p>
+      <p><b>② KeyError: '销售员'（明明有这一列）</b><br>多半是列名有看不见的空格或全角字符。对 AI 说：「先打印所有列名的列表确认，再按真实列名写」。</p>
+      <p><b>③ AI 说找不到 data/sales_2024.xlsx</b><br>检查终端是不是在 example 目录里启动的 AI（它只找自己所在目录的相对路径）。退出，cd example 后重新 claude。</p>
+      <p><b>④ 结果数字感觉不对劲</b><br>别慌着怪 AI，也别默默接受。用 Excel 亲手算一个小数字对答案（比如某个人某个月的总和）——对上了放心用，对不上把差额描述给它。这个习惯在第 6 章会升级成「验证」环节。</p>
+    </div>
+  </section>
+
+  <!-- 章尾导航 -->
+  <nav class="pager" aria-label="上一章下一章">
+    <a href="ch1.html"><span class="dir">← 上一章</span>第 1 章 · 第一次魔法</a>
+    <a class="next" href="ch3.html"><span class="dir dir-next">下一章 →</span>第 3 章 · git 时光机：给代码装上存档点</a>
+  </nav>
+
+</main>
+</body>
+</html>
