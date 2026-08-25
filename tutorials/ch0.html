@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 0 章 · 环境准备：给电脑装上三样法宝</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="page">
+
+  <!-- git 提交图导航 -->
+  <nav aria-label="课程进度">
+    <ul class="gg">
+      <li class="cur" data-n="0"><a href="ch0.html" aria-label="第0章，当前位置">0</a><span class="gg-label">环境准备</span></li>
+      <li><span aria-label="第1章">1</span><span class="gg-label">第一次魔法</span></li>
+      <li><span aria-label="第2章">2</span><span class="gg-label">对话姿势</span></li>
+      <li><span aria-label="第3章">3</span><span class="gg-label">git 时光机</span></li>
+      <li><span aria-label="第4章">4</span><span class="gg-label">数据看板</span></li>
+      <li><span aria-label="第5章">5</span><span class="gg-label">协作剧场</span></li>
+      <li><span aria-label="第6章">6</span><span class="gg-label">流程全景</span></li>
+      <li><span aria-label="第7章">7</span><span class="gg-label">毕业项目</span></li>
+    </ul>
+  </nav>
+
+  <header class="chap-head">
+    <p class="eyebrow">Chapter 0 · 第 0 章</p>
+    <h1>环境准备：给电脑装上三样法宝</h1>
+    <p><span class="hash-chip"><b>a07e3d1</b> · ch0</span><span class="hash-chip">main</span></p>
+    <p class="lead">这一章一行代码都不写。我们只做一件事：把后面 7 章要用的三样工具装好，并和「终端」交个朋友。装完跑一个自检脚本，全绿就毕业。</p>
+    <p class="meta-line">⏱ 约 45 分钟 · 无前置要求 · 本章安装步骤最后验证日期：2026-08</p>
+  </header>
+
+  <!-- ============ 01 ============ -->
+  <section>
+    <h2><span class="sec-no">01</span>要装什么，为什么是它们</h2>
+    <p>开车之前得有车、有钥匙、有导航。这门课的三样法宝对应关系是：</p>
+    <table>
+      <thead><tr><th>法宝</th><th>是什么</th><th>在本课里干嘛</th></tr></thead>
+      <tbody>
+        <tr><td>🚌 Python</td><td>跑数据的引擎</td><td>真正执行分析的「发动机」</td></tr>
+        <tr><td>🕰 Git</td><td>代码的时光机</td><td>保存/回退每个版本，团队协作（第 3、5 章主角）</td></tr>
+        <tr><td>🤖 Claude Code</td><td>你的 AI 程序员</td><td>你说话，它写代码</td></tr>
+      </tbody>
+    </table>
+    <p>另外还有一位不用安装的朋友——<b>终端</b>，它已经在你电脑里了，我们从它开始。</p>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section>
+    <h2><span class="sec-no">02</span>认识终端：和电脑打字聊天的窗口</h2>
+    <div class="box box-tip">
+      <h3>类比时刻：微信聊天框</h3>
+      <p>终端就是一个<b>只有文字的聊天窗口</b>，聊天对象是你的电脑。平时你点图标、按菜单是在「比划」，而在终端里，你直接「打字告诉它做什么」。它响应快、能做的事多——是程序员和 AI 助手的主要工作地点。它不会因为敲错一个字就爆炸，大不了关掉重开。</p>
+    </div>
+    <h3>打开它</h3>
+    <p><b>Windows</b>：按 <kbd>Win</kbd> 键 → 输入 <code>powershell</code> → 回车。弹出的蓝底（或黑底）窗口就是终端。<br>
+    <b>macOS</b>：<kbd>Command</kbd>+<kbd>空格</kbd> → 输入 <code>终端</code> 或 <code>Terminal</code> → 回车。</p>
+    <p>来，发出你人生第一条终端命令——问电脑「我是谁」：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 你输入 whoami 后回车</span></div>
+      <pre><span class="cmd">whoami</span>
+<span class="out">desktop-a1b2c3\xiaoming</span></pre>
+    </div>
+    <p>电脑回答了你的用户名。刚才发生的事情拆开看：</p>
+    <figure class="fig">
+      <svg viewBox="0 0 660 330" role="img" aria-label="终端窗口解剖图：提示符、命令、输出、光标">
+        <defs>
+          <filter id="s0" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#1F3A4D" flood-opacity="0.12"/>
+          </filter>
+        </defs>
+        <rect x="30" y="20" width="600" height="290" rx="14" fill="#1E2A38" filter="url(#s0)"/>
+        <circle cx="56" cy="46" r="6" fill="#FF5F57"/><circle cx="76" cy="46" r="6" fill="#FEBC2E"/><circle cx="96" cy="46" r="6" fill="#28C840"/>
+        <text x="330" y="51" text-anchor="middle" font-size="12" fill="#7E93A8" font-family="Consolas,monospace">Windows PowerShell</text>
+        <text x="56" y="100" font-size="14" fill="#6FA8DC" font-family="Consolas,monospace">PS C:\Users\xiaoming&gt;</text>
+        <text x="250" y="100" font-size="14" fill="#FFD8A8" font-family="Consolas,monospace">whoami</text>
+        <text x="56" y="128" font-size="14" fill="#A7B7C9" font-family="Consolas,monospace">desktop-a1b2c3\xiaoming</text>
+        <rect x="56" y="148" width="9" height="18" fill="#DCE6F2"/>
+        <!-- 标注线 -->
+        <g stroke="#E8630A" stroke-width="2" fill="none">
+          <path d="M 200 96 Q 240 60 285 60"/>
+          <path d="M 305 104 Q 350 104 395 104"/>
+          <path d="M 230 124 Q 270 160 315 160"/>
+          <path d="M 66 172 Q 30 200 20 200" transform="translate(6,20)"/>
+        </g>
+        <g font-size="13" fill="#1F3A4D">
+          <circle cx="292" cy="60" r="10" fill="#E8630A"/><text x="292" y="64" text-anchor="middle" fill="#fff" font-size="11">1</text>
+          <circle cx="402" cy="104" r="10" fill="#E8630A"/><text x="402" y="108" text-anchor="middle" fill="#fff" font-size="11">2</text>
+          <circle cx="322" cy="160" r="10" fill="#E8630A"/><text x="322" y="164" text-anchor="middle" fill="#fff" font-size="11">3</text>
+          <circle cx="20" cy="226" r="10" fill="#E8630A" transform="translate(12,0)"/><text x="32" y="230" text-anchor="middle" fill="#fff" font-size="11">4</text>
+        </g>
+        <g font-size="13" fill="#1F3A4D">
+          <text x="306" y="64" font-weight="600">① 提示符：电脑在等你说</text>
+          <text x="416" y="108" font-weight="600">② 你敲的命令（然后按回车）</text>
+          <text x="336" y="164" font-weight="600">③ 电脑的回答</text>
+          <text x="44" y="230" font-weight="600">④ 光标：闪烁表示可以继续输入</text>
+        </g>
+      </svg>
+      <figcaption>终端解剖图。教程所有代码块里，<code>$</code> 开头的行就是你该敲的命令</figcaption>
+    </figure>
+    <p>以后每章你都会用这个窗口。不用记命令——<b>命令永远可以回来抄</b>。</p>
+  </section>
+
+  <!-- ============ 03 ============ -->
+  <section>
+    <h2><span class="sec-no">03</span>法宝一：Python（跑数据的引擎）</h2>
+    <h3>安装</h3>
+    <p>浏览器打开 <a href="https://www.python.org/downloads/">python.org/downloads</a>，下载最新的 Python 3 安装包（Windows 点黄色大按钮；macOS 建议直接用系统自带的 Python 或同样从此页下载）。</p>
+    <div class="box box-do">
+      <h3>Windows 最重要的一步</h3>
+      <p>安装第一屏，<b>务必勾选底部的「Add python.exe to PATH」</b>，再点 Install Now。这一步决定了终端能不能「找到」Python——每年最多的翻车都在这。</p>
+    </div>
+    <h3>验证 + 装两个数据工具箱</h3>
+    <p>装完后<b>关掉终端，重新打开一个新的</b>（重要！老终端不认识新装的软件），然后：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 验证 Python 并安装 pandas、openpyxl</span></div>
+      <pre><span class="cmd">python --version</span>
+<span class="out">Python 3.13.5</span>
+<span class="cmt"># pip 是 Python 的「应用商店」，装后面要用的两个数据分析库</span>
+<span class="cmd">pip install pandas openpyxl</span>
+<span class="ok">Successfully installed pandas-2.x.x openpyxl-3.x.x ...</span></pre>
+    </div>
+    <p>版本号 3.10 以上都算合格。看到 <code>Successfully installed</code> 就成了。</p>
+  </section>
+
+  <!-- ============ 04 ============ -->
+  <section>
+    <h2><span class="sec-no">04</span>法宝二：Git（代码的时光机）</h2>
+    <p>浏览器打开 <a href="https://git-scm.com/downloads/win">git-scm.com/downloads/win</a>，下载 Windows 版安装包。<b>一路点「Next」用默认选项即可</b>——那些选项是给老手准备的，默认值对我们都合适。macOS 用户在终端输入 <code>git --version</code>，系统会自动引导安装。</p>
+    <p>装完同样<b>重开终端</b>验证：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 验证 git</span></div>
+      <pre><span class="cmd">git --version</span>
+<span class="out">git version 2.52.0.windows.1</span></pre>
+    </div>
+    <p>附带一个好消息：装了 Git，你的 AI 助手在 Windows 上也能工作得更好（它内置的很多操作依赖 git 工具）。现在不急着学它怎么用——第 3 章专门讲。</p>
+  </section>
+
+  <!-- ============ 05 ============ -->
+  <section>
+    <h2><span class="sec-no">05</span>法宝三：Claude Code（你的 AI 程序员）</h2>
+    <p>在 <b>PowerShell</b> 终端里运行官方推荐的原生安装命令（一行，回车后等它跑完）：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">PowerShell · 安装 Claude Code（macOS 用：curl -fsSL https://claude.ai/install.sh | bash）</span></div>
+      <pre><span class="cmd">irm https://claude.ai/install.ps1 | iex</span>
+<span class="ok">Claude Code installed successfully!</span></pre>
+    </div>
+    <p>重开终端，验证：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 验证</span></div>
+      <pre><span class="cmd">claude --version</span>
+<span class="out">2.1.211 (Claude Code)</span>
+<span class="cmt"># 觉得不对劲时可随时运行「体检」命令：</span>
+<span class="cmd">claude doctor</span></pre>
+    </div>
+    <p>装好了，还差最后一步——让 AI 知道「你是谁、走哪个门进来」。下面两条路<b>二选一</b>：</p>
+
+    <h3>路径 A：官方订阅（有 Claude Pro/Max 账号）</h3>
+    <p>终端里直接输入 <code>claude</code> 回车，它会让你在浏览器里登录你的 claude.ai 账号，跟着点完即可回来。（注意：免费版 claude.ai 账号不含 Claude Code，需要 Pro 或 Max 订阅。）</p>
+
+    <h3>路径 B：国内模型端点（没有海外订阅）</h3>
+    <p> Claude Code 支持把请求转发到任何 Anthropic 兼容的服务端点。国内的模型服务商（如智谱、DeepSeek 等）大多提供这种接入方式，去你选定的服务商控制台开通一个 API Key，然后配置一个文件：</p>
+    <p>按 <kbd>Win</kbd>+<kbd>R</kbd>，输入 <code>notepad %USERPROFILE%\.claude\settings.json</code> 回车（macOS 用 <code>nano ~/.claude/settings.json</code>），粘贴以下内容并保存（记事本会问是否新建文件，选「是」）：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">settings.json · 端点与密钥（占位内容以你的服务商文档为准）</span></div>
+      <pre><span class="out">{
+  "env": {
+    "ANTHROPIC_BASE_URL": "https://你的服务商端点地址",
+    "ANTHROPIC_AUTH_TOKEN": "你的API密钥"
+  }
+}</span></pre>
+    </div>
+    <ul>
+      <li><code>ANTHROPIC_BASE_URL</code>：告诉 Claude Code 把请求发到哪个服务地址</li>
+      <li><code>ANTHROPIC_AUTH_TOKEN</code>：你的身份凭证，服务商用它认出你（部分服务商要求用 <code>ANTHROPIC_API_KEY</code> 这个名字，看它的接入文档）</li>
+    </ul>
+    <p>保存后在终端运行 <code>claude doctor</code>，没有红色报错就配置成功。这个文件就是 AI 助手的「工牌」，以后不用再动它。</p>
+  </section>
+
+  <!-- ============ 06 ============ -->
+  <section>
+    <h2><span class="sec-no">06</span>拿到教材：你的第一次 git 操作</h2>
+    <p>现在用刚装好的 git，把这门课的完整材料（教程 + 示例数据）从 GitHub 复制到你的电脑。在终端里：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 克隆课程仓库（地址以课程发布页为准）</span></div>
+      <pre><span class="cmt"># 先「走到」桌面，材料会下载到那里</span>
+<span class="cmd">cd Desktop</span>
+<span class="cmd">git clone https://github.com/课程方/vibe-coding-academy.git</span>
+<span class="out">Cloning into 'vibe-coding-academy'...</span>
+<span class="ok">done.</span>
+<span class="cmd">cd vibe-coding-academy</span></pre>
+    </div>
+    <p>恭喜——<b>你刚刚完成了人生第一次 git 操作（clone，克隆）</b>：把云端一个完整项目连同它的全部历史复制到了本地。原理先不管，第 3 章会回头解释。现在你只需要知道：桌面上多了个文件夹，里面是全部课程材料。</p>
+    <p class="meta-line">连不上 GitHub？多试两次、换个时间段，或直接在仓库页面点绿色 Code 按钮 → Download ZIP，解压到桌面同样能用。</p>
+  </section>
+
+  <!-- ============ 07 ============ -->
+  <section>
+    <h2><span class="sec-no">07</span>一键自检：给环境拍张片</h2>
+    <p>课程自带一个自检脚本，把上面装的所有东西挨个检查一遍。在刚才的 <code>vibe-coding-academy</code> 目录里：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 运行环境自检</span></div>
+      <pre><span class="cmd">python example/scripts/check_env.py</span>
+<span class="ok">✅ Python 3.13.5</span>
+<span class="ok">✅ Python 库 pandas</span>
+<span class="ok">✅ 命令 git</span>
+<span class="ok">✅ 命令 claude</span>
+<span class="ok">🎉 全部通过！你可以进入第 1 章了。</span></pre>
+    </div>
+    <p>有 ❌ 就按它给出的「修复」提示处理，然后重跑，直到全绿。这个过程本身就是练习：<b>看报错 → 修 → 重跑</b>，以后每天都这么过。</p>
+  </section>
+
+  <!-- ============ 三件套 ============ -->
+  <section>
+    <h2><span class="sec-no">08</span>课后三件套</h2>
+
+    <div class="box box-do">
+      <h3>动手做：三条命令的仪式感</h3>
+      <p>在一个终端窗口里依次完成：① <code>whoami</code>（电脑认识你了）② <code>python --version</code>（引擎就位）③ 自检脚本全绿（法宝齐全）。全做到，你就正式开学了。</p>
+      <details>
+        <summary>点开看参考过程</summary>
+        <div class="term">
+          <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 参考过程</span></div>
+          <pre><span class="cmd">whoami</span>
+<span class="out">desktop-a1b2c3\xiaoming</span>
+<span class="cmd">python --version</span>
+<span class="out">Python 3.13.5</span>
+<span class="cmd">cd Desktop/vibe-coding-academy</span>
+<span class="cmd">python example/scripts/check_env.py</span>
+<span class="ok">🎉 全部通过！你可以进入第 1 章了。</span></pre>
+        </div>
+        <p>如果卡在某一步，翻下面的急救箱——十有八九已经有人替你翻过这个车了。</p>
+      </details>
+    </div>
+
+    <div class="box box-quiz">
+      <h3>自测 3 题（点击展开答案）</h3>
+      <details><summary>1. 为什么每次装完软件都要「关闭终端，重新打开」？</summary><p>终端在启动时记住一份「软件位置清单」（PATH 环境变量）。新装的软件登记进了清单，但<b>已经开着的终端还在用旧清单</b>，找不到它。重开 = 重新读清单。</p></details>
+      <details><summary>2. 路径 B 里的 ANTHROPIC_BASE_URL 是干什么的？</summary><p>它告诉 Claude Code「把请求发到哪个服务地址」。不设置时默认发到官方；填上国内服务商的端点地址后，就走你开通的那条路。配好之后日常使用和路径 A 没有区别。</p></details>
+      <details><summary>3. git clone 刚才到底做了什么？</summary><p>把云端（GitHub）上的一个完整项目——所有文件、所有文件夹、<b>连同它的全部修改历史</b>——原样复制了一份到你的电脑。从此你在本地怎么折腾都不影响云端原件。</p></details>
+    </div>
+
+    <div class="box box-aid">
+      <h3>翻车急救箱</h3>
+      <p><b>① 'python' 不是内部或外部命令……</b><br>两个可能：装的时候没勾「Add python.exe to PATH」，或者没重开终端。先重开终端再试；还报错就重新运行安装包，勾上那一项再装一遍。</p>
+      <p><b>② 敲 python 却弹出了 Microsoft Store</b><br>Windows 的「应用执行别名」在捣乱。设置 → 应用 → 高级应用设置 → 应用执行别名，把 python.exe 和 python3.exe 两个开关<b>关掉</b>，重开终端。</p>
+      <p><b>③ 'claude' 不是内部或外部命令 / 'irm' 不是内部命令</b><br>前者：重开终端再试。后者：你在 CMD 里跑了 PowerShell 命令——开一个 PowerShell 窗口（Win 键搜 powershell）再运行；或改用 CMD 版命令 <code>curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd</code>。</p>
+      <p><b>④ pip install 下载极慢或超时</b><br>用国内镜像：pip install pandas openpyxl -i https://pypi.tuna.tsinghua.edu.cn/simple</p>
+      <p><b>⑤ git clone 超时 / 连不上 GitHub</b><br>国内网络常见。多试几次、换时段；或仓库页面 Code → Download ZIP 解压使用，不影响学习。</p>
+      <p><b>⑥ claude doctor 提示 settings.json 有错</b><br>九成是 JSON 语法：漏了引号、多了逗号、用了中文引号。对照本章模板逐字检查，改完保存，再跑一次 claude doctor。</p>
+    </div>
+  </section>
+
+  <!-- 章尾导航 -->
+  <nav class="pager" aria-label="上一章下一章">
+    <a href="index.html"><span class="dir">← 返回</span>课程目录</a>
+    <a class="next" href="ch1.html"><span class="dir dir-next">下一章 →</span>第 1 章 · 第一次魔法：10 分钟出第一份报告</a>
+  </nav>
+
+</main>
+</body>
+</html>

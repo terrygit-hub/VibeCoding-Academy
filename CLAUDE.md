@@ -38,6 +38,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - 系统字体栈（"Microsoft YaHei" / "Segoe UI"），代码用 Cascadia Code / Consolas
 - 代码块统一带终端窗口外壳（三色圆点 + 标题条），命令行前缀 `$`
 - SVG 插图：扁平几何 + 圆角 + 柔和投影，一律内联，无外链图片
+- 图表规则（已用 dataviz 校验脚本验证）：图表永远**单系列单色相（橙 #E8630A）**；青瓷绿只作界面强调色（自测框、成功态），**绝不用作数据系列色**（色度低于地板，会读成灰）；条形图细条 + 数据端 4px 圆角 + 条末直接标数值；数字右对齐等宽字体
 - v1 不做暗色模式、不引入任何 JS 库/外链字体（保证离线双击可用）
 
 ### AI 对话呈现

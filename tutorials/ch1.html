@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 1 章 · 第一次魔法：10 分钟出第一份报告</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="page">
+
+  <!-- git 提交图导航 -->
+  <nav aria-label="课程进度">
+    <ul class="gg">
+      <li class="done"><a href="ch0.html" aria-label="第0章">0</a><span class="gg-label">环境准备</span></li>
+      <li class="cur" data-n="1"><a href="ch1.html" aria-label="第1章，当前位置">1</a><span class="gg-label">第一次魔法</span></li>
+      <li><span aria-label="第2章">2</span><span class="gg-label">对话姿势</span></li>
+      <li><span aria-label="第3章">3</span><span class="gg-label">git 时光机</span></li>
+      <li><span aria-label="第4章">4</span><span class="gg-label">数据看板</span></li>
+      <li><span aria-label="第5章">5</span><span class="gg-label">协作剧场</span></li>
+      <li><span aria-label="第6章">6</span><span class="gg-label">流程全景</span></li>
+      <li><span aria-label="第7章">7</span><span class="gg-label">毕业项目</span></li>
+    </ul>
+  </nav>
+
+  <header class="chap-head">
+    <p class="eyebrow">Chapter 1 · 第 1 章</p>
+    <h1>第一次魔法：10 分钟出第一份报告</h1>
+    <p><span class="hash-chip"><b>c41a9f7</b> · ch1</span><span class="hash-chip">main</span></p>
+    <p class="lead">这一章你一句代码都不用写。你只负责<b>说清楚想要什么</b>，剩下的交给 AI。十分钟后，一张销售表会变成一份能发给你老板的网页报告。</p>
+    <p class="meta-line">⏱ 约 30 分钟 · 前置：第 0 章自检全绿</p>
+  </header>
+
+  <!-- ============ 开场 ============ -->
+  <section>
+    <h2><span class="sec-no">01</span>十分钟后你会有什么</h2>
+    <p>你手里有一张 100 行的销售流水表 <code>sales_simple.csv</code>。十分钟后，它会变成这样一份报告——不用 Excel 透视表，不用函数，你只需要「下一个单」：</p>
+
+    <figure class="fig">
+      <svg viewBox="0 0 560 300" role="img" aria-label="报告成品预览：三个指标卡、两组条形图、一张排行表">
+        <defs>
+          <filter id="s1" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1F3A4D" flood-opacity="0.12"/>
+          </filter>
+        </defs>
+        <rect x="10" y="10" width="540" height="280" rx="14" fill="#FFFFFF" filter="url(#s1)"/>
+        <circle cx="34" cy="34" r="6" fill="#FF5F57"/><circle cx="54" cy="34" r="6" fill="#FEBC2E"/><circle cx="74" cy="34" r="6" fill="#28C840"/>
+        <text x="290" y="40" text-anchor="middle" font-size="15" fill="#1F3A4D" font-weight="700">📊 销售数据报告</text>
+        <rect x="40" y="62" width="152" height="52" rx="10" fill="#FAF6EF"/>
+        <rect x="204" y="62" width="152" height="52" rx="10" fill="#FAF6EF"/>
+        <rect x="368" y="62" width="152" height="52" rx="10" fill="#FAF6EF"/>
+        <text x="50" y="82" font-size="10" fill="#4A6375">总销售额</text><text x="50" y="102" font-size="16" font-weight="800" fill="#1F3A4D">¥121,174</text>
+        <text x="214" y="82" font-size="10" fill="#4A6375">订单数</text><text x="214" y="102" font-size="16" font-weight="800" fill="#1F3A4D">100 笔</text>
+        <text x="378" y="82" font-size="10" fill="#4A6375">平均订单额</text><text x="378" y="102" font-size="16" font-weight="800" fill="#1F3A4D">¥1,211</text>
+        <text x="40" y="140" font-size="12" fill="#4A6375">按地区</text>
+        <text x="88" y="160" font-size="11" fill="#1F3A4D" text-anchor="end">华南</text><rect x="96" y="150" width="300" height="14" rx="3" fill="#E8630A"/>
+        <text x="88" y="184" font-size="11" fill="#1F3A4D" text-anchor="end">华东</text><rect x="96" y="174" width="236" height="14" rx="3" fill="#E8630A"/>
+        <text x="88" y="208" font-size="11" fill="#1F3A4D" text-anchor="end">西南</text><rect x="96" y="198" width="225" height="14" rx="3" fill="#E8630A"/>
+        <text x="88" y="232" font-size="11" fill="#1F3A4D" text-anchor="end">华北</text><rect x="96" y="222" width="72" height="14" rx="3" fill="#E8630A"/>
+        <text x="40" y="260" font-size="12" fill="#4A6375">销售员排行（第 1 名：赵蕾 ¥29,400 · 占 24.3%）</text>
+        <rect x="40" y="268" width="480" height="8" rx="4" fill="#F1E9DA"/><rect x="40" y="268" width="117" height="8" rx="4" fill="#E8630A"/>
+      </svg>
+      <figcaption>你将生成的 report.html —— 数字由你的数据实时算出，这里只是示意</figcaption>
+    </figure>
+
+    <div class="box box-tip">
+      <h3>类比时刻：点外卖</h3>
+      <p>用 AI 写代码就像点外卖：你在手机上<b>说清楚想吃什么</b>（需求），厨房（AI）负责炒菜（写代码、跑程序），半小时后餐送到桌上（生成 report.html）。<b>你不需要会炒菜</b>，但你得会点菜——说「随便来点吃的」的人，往往收到不该放香菜的香菜牛肉面。</p>
+    </div>
+  </section>
+
+  <!-- ============ 步骤 1 ============ -->
+  <section>
+    <h2><span class="sec-no">02</span>第一步：看一眼原材料</h2>
+    <p>先用 Excel 双击打开 <code>example\data\sales_simple.csv</code>，你会发现它比一般流水表还友好——每列都是规整的：</p>
+    <table>
+      <thead><tr><th>列名</th><th>是什么</th><th>例子</th></tr></thead>
+      <tbody>
+        <tr><td>订单编号</td><td>每笔订单的唯一代号</td><td>SO-2025-0001</td></tr>
+        <tr><td>订单日期</td><td>下单日期（2025 年 7–9 月）</td><td>2025-07-29</td></tr>
+        <tr><td>地区 / 城市</td><td>客户所在区域</td><td>华北 / 北京</td></tr>
+        <tr><td>产品类别 / 产品名</td><td>卖的是什么</td><td>耗材 / 硒鼓</td></tr>
+        <tr><td>销售员</td><td>谁卖的</td><td>李婷</td></tr>
+        <tr><td class="num">数量 / 单价 / 金额</td><td>金额 = 数量 × 单价</td><td class="num">4 × 320 = 1280</td></tr>
+      </tbody>
+    </table>
+    <p>看懂了吗？接下来你要让 AI 告诉你：<b>哪个地区卖得最多、哪类产品最赚钱、谁是销冠</b>。</p>
+  </section>
+
+  <!-- ============ 步骤 2 ============ -->
+  <section>
+    <h2><span class="sec-no">03</span>第二步：走到工作台，唤醒 AI</h2>
+    <p>打开终端（第 0 章我们已经成为朋友了），「走到」示例项目所在的文件夹，然后把 AI 叫醒：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端（在课程仓库根目录下）</span></div>
+      <pre><span class="cmt"># 「走到」example 文件夹——就像在文件管理器里双击进入这个文件夹</span>
+<span class="cmd">cd example</span>
+<span class="cmt"># 唤醒 AI 助手（第 0 章装好的那个）</span>
+<span class="cmd">claude</span>
+<span class="out">✓ Welcome to Claude Code.  (初次进入会显示一些提示，直接按回车继续即可)</span></pre>
+    </div>
+    <p>现在你的终端变成了一个<b>对话窗口</b>：光标在闪，等你说第一句话。想退出时输入 <code>/exit</code> 回车即可。</p>
+  </section>
+
+  <!-- ============ 步骤 3 ============ -->
+  <section>
+    <h2><span class="sec-no">04</span>第三步：念出第一段咒语</h2>
+    <p>在 AI 对话框里，把下面这段话<b>原样输入</b>（也可以按你的意思改，改了更有意思）：</p>
+    <div class="chat">
+      <p class="chat-user">请帮我分析 data/sales_simple.csv（注意是 UTF-8 带 BOM 编码）。统计：总销售额、订单数、平均订单额，并按「地区」和「产品类别」分别汇总销售额。把结果生成一个独立可打开的网页报告 report.html：数字带千分位，汇总用横向条形图，风格明亮简洁。写完脚本请运行它，确认报告生成成功。</p>
+    </div>
+    <p>按下回车，见证时刻到了——AI 会自己创建文件、自己敲命令、自己检查结果：</p>
+    <div class="chat">
+      <p class="chat-ai">好的，我来创建分析脚本 <code>ch1_report.py</code>：读取 CSV → 计算汇总 → 生成网页报告……</p>
+      <p class="chat-term"><span class="ok">✓ 报告已生成：report.html</span><br>总销售额 ¥121,174 · 共 100 笔订单</p>
+    </div>
+    <p>AI 在终端里的一连串操作不用全看懂，刚才只发生了三件事：</p>
+    <figure class="fig">
+      <svg viewBox="0 0 720 170" role="img" aria-label="流程图：销售表经过 AI 写的分析脚本，变成网页报告">
+        <defs>
+          <filter id="s2" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1F3A4D" flood-opacity="0.12"/>
+          </filter>
+        </defs>
+        <rect x="20" y="40" width="170" height="90" rx="14" fill="#FFFFFF" filter="url(#s2)"/>
+        <text x="105" y="78" text-anchor="middle" font-size="26">📄</text>
+        <text x="105" y="106" text-anchor="middle" font-size="13" fill="#1F3A4D" font-weight="700">sales_simple.csv</text>
+        <text x="105" y="122" text-anchor="middle" font-size="11" fill="#8A8175">100 行原始数据</text>
+
+        <path d="M 200 85 L 250 85" stroke="#E8630A" stroke-width="3" marker-end="url(#a2)"/>
+        <defs><marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#E8630A"/></marker></defs>
+
+        <rect x="260" y="40" width="180" height="90" rx="14" fill="#1E2A38" filter="url(#s2)"/>
+        <text x="350" y="78" text-anchor="middle" font-size="26">🐍</text>
+        <text x="350" y="106" text-anchor="middle" font-size="13" fill="#DCE6F2" font-weight="700">ch1_report.py</text>
+        <text x="350" y="122" text-anchor="middle" font-size="11" fill="#7E93A8">AI 帮你写的脚本</text>
+
+        <path d="M 450 85 L 500 85" stroke="#E8630A" stroke-width="3" marker-end="url(#a2)"/>
+
+        <rect x="510" y="40" width="180" height="90" rx="14" fill="#FFFFFF" filter="url(#s2)"/>
+        <text x="600" y="78" text-anchor="middle" font-size="26">🌐</text>
+        <text x="600" y="106" text-anchor="middle" font-size="13" fill="#1F3A4D" font-weight="700">report.html</text>
+        <text x="600" y="122" text-anchor="middle" font-size="11" fill="#8A8175">双击就能看的报告</text>
+      </svg>
+      <figcaption>原始数据 → 分析脚本 → 网页报告。脚本留在你的文件夹里，随时可以再运行</figcaption>
+    </figure>
+
+    <div class="box box-tip">
+      <h3>黄金法则：报错别慌，原样发给它</h3>
+      <p>如果 AI 的输出里出现了大段红色报错——<b>恭喜，这是最好的教材</b>。把报错完整复制，发给 AI：「运行报了这个错，帮我修复」。它修好会自己重跑。这条法则能解决你今后 90% 的问题。</p>
+    </div>
+  </section>
+
+  <!-- ============ 步骤 4 ============ -->
+  <section>
+    <h2><span class="sec-no">05</span>第四步：验收成果</h2>
+    <p>在文件管理器里打开 <code>example</code> 文件夹，找到 <code>report.html</code>，<b>双击</b>——浏览器会打开你的报告。三个大数字、两组条形图、一张销冠排行表，全部来自你那张 CSV。</p>
+    <div class="box box-tip">
+      <h3>心态校准：你不需要看懂代码</h3>
+      <p>打开 <code>ch1_report.py</code> 你大概率一个字都看不懂——<b>这完全正常，也完全不碍事</b>。就像开车不需要懂发动机。你现在掌握的是「说清需求 → 验收结果」，这是 vibe coding 的核心技能；代码细节，等你想懂的时候再让 AI 逐行讲解（第 2 章教你最好用的问法）。</p>
+    </div>
+  </section>
+
+  <!-- ============ 步骤 5 ============ -->
+  <section>
+    <h2><span class="sec-no">06</span>第五步：改需求——魔法的精髓</h2>
+    <p>真正的魔法不是「一次成功」，而是<b>随时可以改</b>。回到 AI 对话框（没退出的直接继续说；退出了就在 example 目录再敲一次 <code>claude</code>，并用 <code>/resume</code> 或直接说明接着上次的 report 继续）：</p>
+    <div class="chat">
+      <p class="chat-user">报告很好！再帮我加一个「按月份」的销售额汇总，放到地区图下面。</p>
+      <p class="chat-ai">好的，我来修改 <code>ch1_report.py</code>：按订单日期提取月份汇总……已完成，请刷新浏览器里的 report.html 查看。</p>
+    </div>
+    <p>刷新浏览器（<kbd>F5</kbd>）——报告长出了新图表。<b>这就是迭代</b>：小步提需求、小步看结果，永远不要一次提出十个要求。</p>
+  </section>
+
+  <!-- ============ 三件套 ============ -->
+  <section>
+    <h2><span class="sec-no">07</span>课后三件套</h2>
+
+    <div class="box box-do">
+      <h3>动手做：城市 Top 5</h3>
+      <p>让报告再增加一块「销售额 Top 5 城市」条形图。提示：数据里已经有「城市」这一列了。</p>
+      <details>
+        <summary>点开看参考过程</summary>
+        <div class="chat">
+          <p class="chat-user">请在报告里增加「销售额 Top 5 城市」的横向条形图，按销售额从高到低排列。</p>
+          <p class="chat-ai">好的：按「城市」汇总金额、取前 5 名、倒序排列，插入到销售员排行表之前……已生成，请刷新查看。</p>
+        </div>
+        <p>如果 AI 的结果顺序不对（从低到高了），直接说「顺序反了，改成从高到低」——<b>提修改意见也是迭代的一部分</b>。</p>
+      </details>
+    </div>
+
+    <div class="box box-quiz">
+      <h3>自测 3 题（点击展开答案）</h3>
+      <details><summary>1. 这一章我们「写」的代码，到底是什么？</summary><p>一段保存在 <code>ch1_report.py</code> 里的 Python 脚本——只是它由 AI 代笔。它留在你的文件夹里，是可以反复运行的「菜谱」，不是一次性的魔法。</p></details>
+      <details><summary>2. 为什么 report.html 双击就能看，别的同事没装 Python 也能看？</summary><p>因为 HTML 是全世界浏览器都认的「网页标准格式」。Python 只在<b>生成</b>报告时用到；生成之后，report.html 是完全独立的成品。</p></details>
+      <details><summary>3. 想让报告再多一个统计维度，正确做法是？</summary><p>回到 AI 对话框继续提需求（迭代），而不是自己动手改代码、也不是从头重来。小步提、小步看。</p></details>
+    </div>
+
+    <div class="box box-aid">
+      <h3>翻车急救箱</h3>
+      <p><b>① FileNotFoundError：找不到 sales_simple.csv</b><br>说明 AI 在错误的文件夹里找文件。对它说：「检查当前目录和文件路径」，并确认你的终端确实在 <code>example</code> 目录里（提示符看得见路径，或敲 <code>cd</code> 看看跳到哪）。</p>
+      <p><b>② ModuleNotFoundError: No module named 'pandas'</b><br>缺数据分析库。退出 AI（<code>/exit</code>）后在终端运行 <code>pip install pandas</code>，装完回来让 AI 重跑。</p>
+      <p><b>③ KeyError: '﻿订单编号'（列名报错）</b><br>文件开头的 BOM 标记被读进了列名。对 AI 说：「读取时请加 encoding='utf-8-sig'」。</p>
+      <p><b>④ UnicodeEncodeError: 'gbk' codec…</b><br>Windows 终端打印 ¥ 符号的老毛病。对 AI 说：「在脚本开头把输出编码切换为 UTF-8」。它会加一行 <code>sys.stdout.reconfigure(encoding="utf-8")</code>。</p>
+      <p><b>⑤ 双击 report.html 打开是乱码或记事本</b><br>右键文件 → 打开方式 → 选择浏览器（Edge/Chrome）。报告本身没有坏。</p>
+    </div>
+  </section>
+
+  <!-- 章尾导航 -->
+  <nav class="pager" aria-label="上一章下一章">
+    <a href="ch0.html"><span class="dir">← 上一章</span>第 0 章 · 环境准备</a>
+    <a class="next" href="index.html"><span class="dir dir-next">下一章 · 敬请期待 →</span>第 2 章 · 和 AI 对话的正确姿势</a>
+  </nav>
+
+</main>
+</body>
+</html>
