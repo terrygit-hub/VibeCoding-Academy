@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 6 章 · 开发流程全景</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="page">
+
+  <!-- git 提交图导航 -->
+  <div class="ggwrap">
+  <nav aria-label="课程进度">
+    <ul class="gg" style="--p:81.25%">
+      <li class="done"><a href="ch0.html">0</a><span class="gg-label">环境准备</span></li>
+      <li class="done"><a href="ch1.html">1</a><span class="gg-label">第一次魔法</span></li>
+      <li class="done"><a href="ch2.html">2</a><span class="gg-label">对话姿势</span></li>
+      <li class="done"><a href="ch3.html">3</a><span class="gg-label">git 时光机</span></li>
+      <li class="done"><a href="ch4.html">4</a><span class="gg-label">数据看板</span></li>
+      <li class="done"><a href="ch5.html">5</a><span class="gg-label">协作剧场</span></li>
+      <li class="cur"><a href="ch6.html" aria-current="page">6</a><span class="gg-label">流程全景</span></li>
+      <li><a href="ch7.html">7</a><span class="gg-label">毕业项目</span></li>
+    </ul>
+  </nav>
+  </div>
+
+  <header class="chap-head">
+    <p class="eyebrow">Chapter 6 · 第 6 章</p>
+    <h1>开发流程全景</h1>
+    <p><span class="hash-chip"><b>c62a9f4</b> · ch6</span><span class="hash-chip">main</span></p>
+    <p class="lead">回看你走过的五章：其实你一直在转同一个圈——<b>需求 → AI 生成 → 审查 → 验证 → 提交</b>。这一章把这个圈挑明、补全最后两块短板（系统的验证、里程碑存档），再用一次彻底的「数据体检」把 2024 年数据里最后的雷全部排掉。</p>
+    <p class="meta-line">⏱ 约 45 分钟 · 前置：第 5 章</p>
+  </header>
+
+  <!-- ============ 01 ============ -->
+  <section>
+    <h2><span class="sec-no">01</span>五步循环：你和专业团队转的是同一个圈</h2>
+    <p>专业软件团队迭代一个产品，无论做 App 还是做银行系统，拆开来都是这五步：</p>
+    <figure class="fig">
+      <svg viewBox="0 0 720 300" role="img" aria-label="开发流程循环图：需求、AI 生成、审查、验证、提交五个环节围成一圈，箭头首尾相连">
+        <defs>
+          <marker id="a6" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#E8630A"/></marker>
+        </defs>
+        <circle cx="360" cy="150" r="88" fill="none" stroke="#E5DCCB" stroke-width="4"/>
+        <path d="M 360 62 A 88 88 0 0 1 448 150" fill="none" stroke="#E8630A" stroke-width="4" marker-end="url(#a6)"/>
+        <path d="M 448 150 A 88 88 0 0 1 360 238" fill="none" stroke="#E8630A" stroke-width="4" marker-end="url(#a6)"/>
+        <path d="M 360 238 A 88 88 0 0 1 272 150" fill="none" stroke="#E8630A" stroke-width="4" marker-end="url(#a6)"/>
+        <path d="M 272 150 A 88 88 0 0 1 360 62" fill="none" stroke="#E8630A" stroke-width="4" marker-end="url(#a6)"/>
+        <text x="360" y="58" text-anchor="middle" font-size="15" fill="#1F3A4D" font-weight="700">① 需求</text>
+        <text x="360" y="76" text-anchor="middle" font-size="11" fill="#8A8175">说清楚要什么</text>
+        <text x="468" y="145" text-anchor="start" font-size="15" fill="#1F3A4D" font-weight="700">② AI 生成</text>
+        <text x="468" y="163" text-anchor="start" font-size="11" fill="#8A8175">它写代码、跑程序</text>
+        <text x="360" y="252" text-anchor="middle" font-size="15" fill="#1F3A4D" font-weight="700">③ 审查</text>
+        <text x="360" y="270" text-anchor="middle" font-size="11" fill="#8A8175">人过问：懂不懂、险不险</text>
+        <text x="252" y="145" text-anchor="end" font-size="15" fill="#1F3A4D" font-weight="700">④ 验证</text>
+        <text x="252" y="163" text-anchor="end" font-size="11" fill="#8A8175">拿证据证明能用</text>
+        <text x="360" y="148" text-anchor="middle" font-size="15" fill="#E8630A" font-weight="700">⑤ 提交</text>
+        <text x="360" y="166" text-anchor="middle" font-size="11" fill="#8A8175">存档、推送、打标</text>
+      </svg>
+      <figcaption>五步一圈，转完一圈回到①提下一个需求。你已经转了五章，只是没人告诉你这是个圈</figcaption>
+    </figure>
+    <div class="box box-tip">
+      <h3>类比时刻：一桌完整的菜</h3>
+      <p>餐厅出好一桌菜，靠的从来不是厨神，而是流程：<b>点单</b>（需求——写清楚，别喊「随便」）、<b>后厨开火</b>（AI 生成）、<b>厨师长试味</b>（审查——咸了淡了一口就知道）、<b>核对菜单上菜</b>（验证——点的 8 道一道不能少）、<b>记账出单</b>（提交——这桌完了才能翻台）。前五章你在学「点单」和「开火」，这一章补上「试味」「核单」和「记账」——凑齐完整的一桌。</p>
+    </div>
+    <p>五步里你已经很强的是①②（咒语四件套、小步迭代），做过但不成体系的是③④（第 2 章的三个万能追问、Excel 手算对答案），第 3、5 章覆盖了⑤的一半（commit / push）。本章把③④⑤拧成正式的制度。</p>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section>
+    <h2><span class="sec-no">02</span>审查：三个问题看穿 AI 的活</h2>
+    <p>审查不是逐行读代码——那是程序员的事。你的审查是<b>质询</b>：东西做完了，先别急着用，问它三个问题（第 2 章的三个万能追问，正式上岗）：</p>
+    <div class="chat">
+      <p class="chat-user">用大白话讲讲你刚写的这段做了什么，假设我完全不懂编程。</p>
+      <p class="chat-ai">三件事：读表；按「订单日期」列取出月份分组求和；把每月合计画成条形图。没有做任何删除或修改数据的操作。</p>
+      <p class="chat-user">你做了哪些假设？</p>
+      <p class="chat-ai">三个：假设金额列没有空值；假设所有日期都在 2024 年；假设同一笔订单不会重复出现。如果假设不成立，结果会偏。</p>
+      <p class="chat-user">第三个假设我不放心——这是多人录入的销售流水。如果数据里有重复订单，你的结果会怎样？怎么发现？</p>
+      <p class="chat-ai">重复会被<b>重复计账</b>，总额虚高，肉眼看不出来。可以写个检查脚本自动核对——这就做。</p>
+    </div>
+    <p>三问的顺序有讲究：<b>先懂（它做了什么）→ 再疑（它假设了什么）→ 后攻（哪个假设最可能塌）</b>。第三问直接引出了本章的主角——验证不能靠眼睛，得靠证据。</p>
+  </section>
+
+  <!-- ============ 03 ============ -->
+  <section>
+    <h2><span class="sec-no">03</span>验证：从「看一眼」到「体检报告」</h2>
+    <p>到目前为止你的验证是「打开页面看一眼 + Excel 手算抽查」。人肉抽查没错，但抽不完 1006 行。专业做法：<b>让 AI 写一个「体检脚本」，把业务规则逐条变成自动检查</b>，一秒钟扫完全表。在 example 目录对 AI 说：</p>
+    <div class="chat">
+      <p class="chat-user">写一个数据体检脚本 data_check.py 检查 data/sales_2024.xlsx，逐项报告：① 整行完全重复的订单（列出订单编号）；② 金额 ≠ 数量 × 单价的行（业务规则：金额 = 数量 × 单价）；③ 每列缺失值数量；④ 订单日期列里文本格式的行数；⑤ 产品类别出现的所有取值。用 ✅/⚠️/❌ 标注严重程度，中文输出。只检查、不修改数据。</p>
+      <p class="chat-ai">已写好 data_check.py（只读不改）。运行体检：</p>
+      <p class="chat-term">📋 数据体检报告 · sales_2024.xlsx<br>共 1006 行 × 10 列<br><br>=== ① 重复订单 ===<br><span class="err">❌ 发现 6 组整行完全重复（12 行）：SO-2024-0120 / 0260 / 0400 / 0540 / 0680 / 0820</span><br><br>=== ② 金额校验（金额 = 数量 × 单价）===<br><span class="err">❌ 8 行金额对不上：SO-2024-0066 录的 ¥2,558.40 应为 ¥3,198.00（其余 7 笔类似，多为少录两三成）</span><br><br>=== ③ 缺失值 ===<br><span class="out">⚠️ 地区：缺 12 行 · 城市：缺 12 行</span><br><br>=== ④ 日期格式 ===<br><span class="out">⚠️ 59 行日期是文本（如 2024/3/5）</span><br><br>=== ⑤ 类别口径 ===<br><span class="out">⚠️ 出现 6 个类别：标准 3 类之外混有简称「文具 14 / 设备 13 / 消耗品 13」</span></p>
+    </div>
+    <p>五颗雷全部现形：<b>①②是本章新爆的两颗</b>（重复计账、金额录错），③④⑤是第 2、4 章已排过的三颗（脚本顺带复查——好的体检从来不嫌啰嗦）。这份报告就是下一步的输入。</p>
+    <div class="box box-tip">
+      <h3>体检脚本是「一次性」的吗？</h3>
+      <p>不是——把它留在项目里，数据每次更新都重跑一遍。它就是你的<b>质检工位</b>：不产生结论，只陈述事实；不修改数据，只报告问题。以后 AI 改任何分析代码，你都能用同一份体检报告对照「底数」有没有被动过。</p>
+    </div>
+  </section>
+
+  <!-- ============ 04 ============ -->
+  <section>
+    <h2><span class="sec-no">04</span>裁决：五份问题，五个口径</h2>
+    <p>体检报告躺在那里不会自己变好。<b>每一项怎么处理，都是业务决定——裁判只能是你</b>。拿销售流水来说，合理的裁决长这样：</p>
+    <table>
+      <thead><tr><th>体检发现</th><th>裁决</th><th>理由</th></tr></thead>
+      <tbody>
+        <tr><td>❌ 6 组整行重复</td><td>删除，每组保留第一笔</td><td>订单编号一样、每个字段一样 = 重复录入，不是真实卖了两次</td></tr>
+        <tr><td>❌ 8 笔金额对不上</td><td>按 数量 × 单价 重算</td><td>真值只有原始凭证知道；业务规则摆在那，重算值比错的录入值更可信</td></tr>
+        <tr><td>⚠️ 12 行缺地区</td><td>归入「未填写」</td><td>第 4 章已定的口径，保持不变（宁可见，不可删）</td></tr>
+        <tr><td>⚠️ 59 行文本日期</td><td>解析成真日期</td><td>第 2 章已定的口径</td></tr>
+        <tr><td>⚠️ 40 行类别简称</td><td>按映射归并</td><td>第 2 章已定的口径</td></tr>
+      </tbody>
+    </table>
+    <p>注意前两条的<b>原则</b>：删除和改数是最重的两招，必须一条一条给出理由，绝不「让 AI 自己看着办」。裁决完毕，把整张表连口径一起交给它执行——关键要求：<b>原始文件一个字不动，清洗结果另存新文件</b>（原始数据永远可追溯）：</p>
+    <div class="chat">
+      <p class="chat-user">按以下口径清洗 data/sales_2024.xlsx，另存为 data/sales_2024_clean.xlsx，原始文件不动：① 删除整行重复，保留第一笔；② 金额按 数量×单价 重算；③ 缺失地区/城市填「未填写」；④ 文本日期解析为真日期；⑤ 类别简称按映射归并为三大类。清洗后用 data_check.py 体检新文件，确认全部 ✅。</p>
+      <p class="chat-ai">清洗完成：sales_2024_clean.xlsx 共 1,000 行。复检新文件：① 无重复 ✅ ② 金额全部相符 ✅ ③ 无缺失 ✅ ④ 全部真日期 ✅ ⑤ 三个类别 ✅。另建议把看板的数据源改为清洗后文件。</p>
+    </div>
+    <p>把看板（dashboard.py）的数据文件换成清洗版，刷新页面——数字变了：<b>1,006 笔 → 1,000 笔，总销售额 ¥1,108,140 → ¥1,109,725</b>。总额不降反升？说得通：去掉 6 笔重复（-¥1,618），8 笔录错的金额按规则重算（7 笔少录、1 笔多录，净增 +¥3,204），合计净增约 ¥1,585。<b>数字变了不可怕，可怕的是说不出为什么变</b>——你现在说得出了，这就是口径的力量。</p>
+  </section>
+
+  <!-- ============ 05 ============ -->
+  <section>
+    <h2><span class="sec-no">05</span>提交：里程碑打 tag</h2>
+    <p>一圈走到⑤。这次的提交比往常多两样：清洗脚本产出的新数据、体检脚本本身——它们和看板一样是项目资产。存档之外，再学最后一招：<b>tag（标签）</b>——给某个存档点起个正式名字，当作里程碑：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">终端 · 在你的项目根目录（example 里干完活，/exit 后回到根目录）</span></div>
+      <pre><span class="cmt"># ① 常规存档：体检脚本 + 清洗数据 + 看板换数据源，一起打包</span>
+<span class="cmd">git add example/data_check.py example/data/sales_2024_clean.xlsx example/dashboard.py</span>
+<span class="cmd">git commit -m "数据体检与清洗：去重6笔、金额重算8笔，看板改用清洗版"</span>
+<span class="cmt"># ② 给这个存档点钉一个里程碑名字（tag 只是个名字，不占空间）</span>
+<span class="cmd">git tag data-clean-v1</span>
+<span class="cmt"># ③ push 默认不推 tag，要单独说一声</span>
+<span class="cmd">git push && git push --tags</span>
+<span class="out">Total 0 (delta 0), reused 0 (delta 0)
+To github.com:你的用户名/vibe-coding-academy.git
+ * [new tag]           data-clean-v1 -> data-clean-v1</span></pre>
+    </div>
+    <p>以后任何时候，<code>git tag</code> 一列，里程碑一目了然（你克隆课程时自带的 ch0-setup、ch1-done……就是课程自己的里程碑）。想看某个里程碑时的代码：<code>git checkout data-clean-v1</code>（第 3 章的「观光模式」）。</p>
+    <div class="box box-tip">
+      <h3>五步都齐了，圈转起来了</h3>
+      <p>回头看这一章干的事：需求（体检）→ AI 生成（data_check.py）→ 审查（三问挖出重复风险）→ 验证（体检报告 + 复检全绿）→ 提交（存档 + tag）。<b>你没有学新魔法，你把旧招式排成了阵</b>。这就是「开发流程」的全部真相——一个被纪律串起来的循环。</p>
+    </div>
+  </section>
+
+  <!-- ============ 三件套 ============ -->
+  <section>
+    <h2><span class="sec-no">06</span>课后三件套</h2>
+
+    <div class="box box-do">
+      <h3>动手做：给体检加一项「防未来」检查</h3>
+      <p>现在这份体检查的都是<b>已经发生</b>的问题。给它加一项面向未来的检查：<b>数量或单价 ≤ 0 的行</b>（真实业务里可能是退货冲账录成了负数、或漏填录成了 0）。当前数据里没有这种行，所以新检查应输出 ✅——写完自己验证这一行真的输出 ✅。</p>
+      <details>
+        <summary>点开看参考咒语</summary>
+        <div class="chat">
+          <p class="chat-user">给 data_check.py 加第 ⑥ 项检查：找出 数量 ≤ 0 或 单价 ≤ 0 的行列出订单编号，没有则输出 ✅。改完运行一遍，确认新增项输出 ✅ 且原有各项结果不变。</p>
+          <p class="chat-ai">已加第 ⑥ 项，运行输出「✅ 无异常数量/单价」，原 ①–⑤ 项结果与上次完全一致。</p>
+        </div>
+        <p>「原有各项结果不变」这句验收很重要——改检查工具本身，不能顺手把别的检查改坏了。工具也要被验证，这就是循环的纪律。</p>
+      </details>
+    </div>
+
+    <div class="box box-quiz">
+      <h3>自测 3 题（点击展开答案）</h3>
+      <details><summary>1. 五步循环是哪五步？你在第 1 章其实已经转过第一圈，对号入座一下？</summary><p>需求 → AI 生成 → 审查 → 验证 → 提交。第 1 章：念咒语（需求）、AI 写 ch1_report.py（生成）、听它汇报干了什么（审查）、双击打开看数字（验证）——只差「提交」没做（那时你还没学 git，第 3 章才补上）。</p></details>
+      <details><summary>2. 审查三问的顺序为什么是「先懂、再疑、后攻」？</summary><p>先懂它做了什么（否则你连质疑的资格都没有），再问它假设了什么（假设是错的藏身处），最后挑最可疑的假设主动攻击（「如果数据有重复会怎样」）。反过来问——上来就攻——你分不清它是真稳还是嘴硬。</p></details>
+      <details><summary>3. 为什么验证要写成体检脚本，而不是每次用 Excel 手动抽查？</summary><p>三个理由：脚本全量扫描，抽查永远有漏网；脚本可重复，数据每次更新一秒钟重跑，抽查坚持不了三次；脚本是证据，报告可以贴给老板/同事，口头说「我查过了」不算数。人肉抽查仍然该做——但作为脚本之外的最后一道，不是唯一一道。</p></details>
+    </div>
+
+    <div class="box box-aid">
+      <h3>翻车急救箱</h3>
+      <p><b>① 清洗后看板打不开 / 报文件找不到</b><br>看板的数据路径没改过来或写错文件名。对 AI 说：「把 dashboard.py 读取的文件路径确认一遍，应为 data/sales_2024_clean.xlsx」。</p>
+      <p><b>② 清洗后数字变了，心里发慌</b><br>口径变了，数字就该变——慌是因为说不清差异。做减法：去重删了哪些（体检报告①）、重算改了哪些（②），两笔账算出来对上差值（本章是 +¥1,585），就敢签字。说清楚了，变比不变更可信。</p>
+      <p><b>③ tag 打错了名字 / 想删掉</b><br>本地删：<code>git tag -d 名字</code>；已经 push 过的还要删云端：<code>git push origin :refs/tags/名字</code>。重打：<code>git tag 新名字</code>。</p>
+      <p><b>④ git push --tags 报 everything up-to-date，但 GitHub 上没看到 tag</b><br>先 <code>git tag</code> 确认本地真的打上了；再看推送输出的目标是不是你自己的仓库（第 5 章换过 origin）。</p>
+      <p><b>⑤ 想回到清洗前的数据看看</b><br>原始文件 sales_2024.xlsx 一个字没动，双击就能看；看板想切回去，让 AI 把路径改回去再刷新。这正是「原始不动、另存清洗版」的红利。</p>
+    </div>
+  </section>
+
+  <!-- 章尾导航 -->
+  <nav class="pager" aria-label="上一章下一章">
+    <a href="ch5.html"><span class="dir">← 上一章</span>第 5 章 · 协作剧场：一个人演完团队协作</a>
+    <a class="next" href="ch7.html"><span class="dir dir-next">下一章 →</span>第 7 章 · 毕业项目：用你自己的数据</a>
+  </nav>
+
+</main>
+</body>
+</html>
