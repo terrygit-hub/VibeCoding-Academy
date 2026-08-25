@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# 生成的报告（学生运行后产生，不入库）
+example/report.html
+example/output/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code 本地配置
+.claude/settings.local.json
