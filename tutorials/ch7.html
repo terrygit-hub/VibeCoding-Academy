@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 7 章 · 毕业项目：用你自己的数据</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<main class="page">
+
+  <!-- git 提交图导航 -->
+  <div class="ggwrap">
+  <nav aria-label="课程进度">
+    <ul class="gg" style="--p:93.75%">
+      <li class="done"><a href="ch0.html">0</a><span class="gg-label">环境准备</span></li>
+      <li class="done"><a href="ch1.html">1</a><span class="gg-label">第一次魔法</span></li>
+      <li class="done"><a href="ch2.html">2</a><span class="gg-label">对话姿势</span></li>
+      <li class="done"><a href="ch3.html">3</a><span class="gg-label">git 时光机</span></li>
+      <li class="done"><a href="ch4.html">4</a><span class="gg-label">数据看板</span></li>
+      <li class="done"><a href="ch5.html">5</a><span class="gg-label">协作剧场</span></li>
+      <li class="done"><a href="ch6.html">6</a><span class="gg-label">流程全景</span></li>
+      <li class="cur"><a href="ch7.html" aria-current="page">7</a><span class="gg-label">毕业项目</span></li>
+    </ul>
+  </nav>
+  </div>
+
+  <header class="chap-head">
+    <p class="eyebrow">Chapter 7 · 第 7 章 · 最后一章</p>
+    <h1>毕业项目：用你自己的数据</h1>
+    <p><span class="hash-chip"><b>d83b6e1</b> · ch7</span><span class="hash-chip">main</span></p>
+    <p class="lead">前六章的弹药都打在「演的」销售数据上。毕业考只有一道题：<b>打开你电脑里那份拖了很久的真实表格</b>——考勤、报销、库存、台账都行——独立走完五步循环，交付一个给自己（或老板）用的小工具。</p>
+    <p class="meta-line">⏱ 约 60 分钟起步（这是个开头，不是终点）· 前置：第 6 章</p>
+  </header>
+
+  <!-- ============ 01 ============ -->
+  <section>
+    <h2><span class="sec-no">01</span>你已经翻过的山</h2>
+    <p>动工之前，先看一眼来路——这八级台阶，你是一步步自己走上来的：</p>
+    <figure class="fig">
+      <svg viewBox="0 0 720 260" role="img" aria-label="八级台阶路线图，从环境准备到毕业项目，山顶插着毕业旗">
+        <defs>
+          <filter id="s7" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1F3A4D" flood-opacity="0.12"/>
+          </filter>
+        </defs>
+        <path d="M 40 210 L 180 210 L 180 180 L 320 180 L 320 150 L 460 150 L 460 120 L 620 120 L 620 90"
+              fill="none" stroke="#E5DCCB" stroke-width="5"/>
+        <g font-size="11.5" fill="#4A6375" text-anchor="middle">
+          <rect x="40" y="180" width="26" height="26" rx="7" fill="#FFFFFF" stroke="#E5DCCB" stroke-width="3"/><text x="53" y="198" fill="#8A8175">0</text>
+          <rect x="120" y="150" width="26" height="26" rx="7" fill="#FFFFFF" stroke="#E5DCCB" stroke-width="3"/><text x="133" y="168" fill="#8A8175">1</text>
+          <rect x="200" y="120" width="26" height="26" rx="7" fill="#FFFFFF" stroke="#E5DCCB" stroke-width="3"/><text x="213" y="138" fill="#8A8175">2</text>
+          <rect x="280" y="90" width="26" height="26" rx="7" fill="#FFFFFF" stroke="#E5DCCB" stroke-width="3"/><text x="293" y="108" fill="#8A8175">3</text>
+          <rect x="360" y="60" width="26" height="26" rx="7" fill="#FFFFFF" stroke="#E5DCCB" stroke-width="3"/><text x="373" y="78" fill="#8A8175">4</text>
+          <rect x="440" y="30" width="26" height="26" rx="7" fill="#FFFFFF" stroke="#E5DCCB" stroke-width="3"/><text x="453" y="48" fill="#8A8175">5</text>
+          <rect x="520" y="14" width="26" height="26" rx="7" fill="#FFFFFF" stroke="#E5DCCB" stroke-width="3"/><text x="533" y="32" fill="#8A8175">6</text>
+          <text x="53" y="228">环境</text><text x="133" y="198">首胜</text><text x="213" y="168">咒语</text><text x="293" y="138">时光机</text>
+          <text x="373" y="108">看板</text><text x="453" y="78">协作</text><text x="533" y="48">流程</text>
+        </g>
+        <circle cx="620" cy="66" r="30" fill="#E8630A" filter="url(#s7)"/>
+        <text x="620" y="62" text-anchor="middle" font-size="20">🎓</text>
+        <text x="620" y="80" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">毕业</text>
+        <text x="676" y="66" font-size="11.5" fill="#E8630A" font-weight="700" text-anchor="middle">自己的数据</text>
+      </svg>
+      <figcaption>课程教你的不是七个工具，是一套循环：把「说清楚 → 让它做 → 亲自验 → 存好档」转成习惯</figcaption>
+    </figure>
+    <p>毕业项目不给新知识，只给一道题和一个检查单。题目：</p>
+    <div class="box box-do">
+      <h3>毕业考题（唯一一道）</h3>
+      <p>选一份你手头<b>真实的表格</b>，用五步循环交付：一份 HTML 报告（必做）+ 一个 Streamlit 看板（选做）+ 一条干净的提交历史，最后打上里程碑 tag <code>graduate-v1</code>。</p>
+    </div>
+  </section>
+
+  <!-- ============ 02 ============ -->
+  <section>
+    <h2><span class="sec-no">02</span>选数据：好数据长什么样</h2>
+    <p>不是所有表格都适合当第一份「自有项目」。用这张表快速判断：</p>
+    <table>
+      <thead><tr><th>✅ 顺手的数据</th><th>⚠️ 先改造再用的数据</th></tr></thead>
+      <tbody>
+        <tr><td>一行一条记录的「流水表」：考勤打卡、销售订单、报销单、库存进出</td><td>为了好看<b>合并过单元格</b>的汇报表（先另存一份规整的）</td></tr>
+        <tr><td>第一行是表头，每列一个意思（日期、人名、金额……）</td><td>一个格子里塞多个值（「3 个，共 450 元」）</td></tr>
+        <tr><td>几十行到几万行</td><td>几十个 sheet 互相引用的「总-分」大簿（先用其中一张分表）</td></tr>
+        <tr><td>至少有一列日期、一列可以加总的数值</td><td>纯文本/扫描图（那不是表格，是图片）</td></tr>
+      </tbody>
+    </table>
+    <p>拿不准就把文件用 Excel 打开，问自己一句：<b>「每一行是不是都在讲同一类事？」</b>——是，就能用。改造不丢人：把美化表复制成一个新 sheet、拆掉合并单元格、补一行表头，五分钟的事。这一步<b>你来做</b>（你最懂这张表的业务），改完再交给 AI。</p>
+  </section>
+
+  <!-- ============ 03 ============ -->
+  <section>
+    <h2><span class="sec-no">03</span>开工：五步循环毕业走一遍</h2>
+    <p>流程就是第 6 章那个圈，不再教新东西——把每一步的「毕业版要点」列给你，照着转：</p>
+    <table>
+      <thead><tr><th>步骤</th><th>毕业版要点</th><th>回看</th></tr></thead>
+      <tbody>
+        <tr><td>① 需求</td><td>四件套写完整，第一句先交代「列有哪些、大概多少行、你想回答什么问题」</td><td>第 2 章 02 节</td></tr>
+        <tr><td>② AI 生成</td><td>从最小的一份 HTML 报告开始（先 10 分钟见成果），看板是第二迭代</td><td>第 1、4 章</td></tr>
+        <tr><td>③ 审查</td><td>三问过一轮：大白话讲讲 / 假设了什么 / 最可疑的假设攻一下</td><td>第 6 章 02 节</td></tr>
+        <tr><td>④ 验证</td><td>体检脚本跑一遍（重复、缺失、数值规则），再亲手用 Excel 算一个小数对答案</td><td>第 6 章 03–04 节</td></tr>
+        <tr><td>⑤ 提交</td><td>commit 说明写清做了什么；每完成一大步存一次档</td><td>第 3、6 章</td></tr>
+      </tbody>
+    </table>
+    <p>第一句咒语可以直接套这个填空：</p>
+    <div class="term">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">毕业咒语（复制去改）</span></div>
+      <pre><span class="out">背景：我在分析 __（文件名）__，这是 __（考勤/报销/库存……）__ 流水，约 __ 行，
+列有：__。数据可能有 __（空格/重复/格式不齐）__ 问题。
+任务：先做一份 HTML 报告：__（你最想回答的两三个问题）__。
+要求：中文、数字千分位、图表单色、风格干净。
+验收：你先自测能打开、数字抽查一个；再交给我。</span></pre>
+    </div>
+    <p>报告跑通后，第二个需求再升级看板（第 4 章的咒语改改就能用）。<b>不要第一步就冲看板</b>——先赢一局，再赢大的。</p>
+  </section>
+
+  <!-- ============ 04 ============ -->
+  <section>
+    <h2><span class="sec-no">04</span>交付：让别人用上你的成果</h2>
+    <p>做出来只算一半，<b>交出去</b>才算毕业：</p>
+    <table>
+      <thead><tr><th>交付物</th><th>怎么给对方</th><th>适合谁</th></tr></thead>
+      <tbody>
+        <tr><td>HTML 报告</td><td>发文件，对方双击就能看，<b>零门槛</b></td><td>老板、同事——首选交付物</td></tr>
+        <tr><td>看板截图</td><td>截几张关键界面发群里</td><td>快速汇报、争取「真版」上线机会</td></tr>
+        <tr><td>看板本身</td><td>对方电脑要装 Python 才能跑——现阶段<b>更多是你自己的工具</b>；想挂到网上让人人能访问，问 AI「Streamlit 社区版部署」</td><td>你自己、愿意装环境一起折腾的同好</td></tr>
+      </tbody>
+    </table>
+    <div class="box box-aid">
+      <h3>交付前 30 秒安全检查</h3>
+      <p>你的数据要经过 AI 服务处理——<b>先用公司的规矩过一遍</b>：涉密不出网、个人敏感信息（姓名、证件、手机号、客户名单）先脱敏再喂（把「张三」替换成「员工A」并不影响分析）。宁可保守：能脱就脱，能抽样就别全量。这不是技术问题，是职业素养——也是你以「懂流程的人」自居的凭证。</p>
+    </div>
+  </section>
+
+  <!-- ============ 05 ============ -->
+  <section>
+    <h2><span class="sec-no">05</span>毕业之后</h2>
+    <p>四个方向，按需自取（都不急）：</p>
+    <p><b>① 保持转速</b>：每周用真实需求转一次五步循环，小工具会越攒越多——工具箱是攒出来的，不是背出来的。<br>
+    <b>② 往下看一层</b>：挑你最常用的一份脚本，让 AI「逐段讲解，假设我不懂编程」——读懂 60% 的那天，你就开始真正「会」了。<br>
+    <b>③ 写下你的规矩</b>：在项目根目录建一个 <code>CLAUDE.md</code>，把你的口径、习惯、雷区写给 AI 看——以后每次开工它自动知道（问 AI：「帮我给这个项目写一份 CLAUDE.md」）。本课程自己就是这么做的。<br>
+    <b>④ 云端见面</b>：把看板挂上 Streamlit 社区云（免费）、把仓库推上 GitHub——你的工具从此有网址、有版本、有观众。</p>
+    <div class="box box-tip">
+      <h3>驾照与路</h3>
+      <p>这 8 章给你的是<b>驾照</b>：会点菜（说清需求）、会试味（审查）、会验菜（验证）、会记账（存档协作）。没人考你漂移——<b>上路，慢慢开</b>。三个月后回头看你的第一个报告，会觉得稚嫩——那时候的你，已经又翻过一座山。</p>
+    </div>
+  </section>
+
+  <!-- ============ 三件套 ============ -->
+  <section>
+    <h2><span class="sec-no">06</span>课后三件套（毕业版）</h2>
+
+    <div class="box box-do">
+      <h3>动手做：毕业项目 + 检查单</h3>
+      <p>交付毕业项目，逐项打勾（缺一项就回去补，都有回看指引）：</p>
+      <table>
+        <thead><tr><th>✓</th><th>检查项</th><th>回看</th></tr></thead>
+        <tbody>
+          <tr><td>☐</td><td>数据选好、肉眼看过五行、该脱敏的脱了</td><td>本章 02/04 节</td></tr>
+          <tr><td>☐</td><td>四件套咒语完整（背景/任务/要求/验收）</td><td>第 2 章</td></tr>
+          <tr><td>☐</td><td>报告生成、浏览器能打开、样式合格</td><td>第 1 章</td></tr>
+          <tr><td>☐</td><td>（选做）看板跑起来、筛选联动正常</td><td>第 4 章</td></tr>
+          <tr><td>☐</td><td>审查三问问过一轮</td><td>第 6 章</td></tr>
+          <tr><td>☐</td><td>体检脚本跑过，每条 ❌⚠️ 都有裁决和理由</td><td>第 6 章</td></tr>
+          <tr><td>☐</td><td>用 Excel 手算核对过一个数字</td><td>第 2 章</td></tr>
+          <tr><td>☐</td><td>提交历史干净：每条 commit 说明都说得清做了什么</td><td>第 3 章</td></tr>
+          <tr><td>☐</td><td>打了 tag <code>graduate-v1</code>（挑战：推上 GitHub，含 --tags）</td><td>第 5、6 章</td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px">九项全勾，毕业。把这份检查单的完成版截图留住——那是你第一件真正「自有」的作品的出生证明。</p>
+    </div>
+
+    <div class="box box-quiz">
+      <h3>自测 3 题（毕业答辩）</h3>
+      <details><summary>1. 拿到一份新数据，你的第一个动作是什么？为什么不是「赶紧让 AI 分析」？</summary><p>先用 Excel 肉眼看几行：一不一样的事、表头是什么、有没有合并单元格和空格子。因为咒语第一件套是「背景」——没看过数据，你说不出背景，AI 只能瞎猜；而且脏数据的问题，眼睛最先发现。</p></details>
+      <details><summary>2. 给老板交付，报告和看板选哪个？给自己用呢？</summary><p>给老板：报告（HTML 文件双击即看，零门槛，结论定格）。给自己：看板（问题天天变，筛选器天天答）。本质是第 4 章那句话——报告服务于「这一次的结论」，看板服务于「以后每一次的好奇」。</p></details>
+      <details><summary>3. 八章学完，如果只能带走一条技能，是哪条？</summary><p>把需求说清楚，然后亲自验收。工具每半年换一茬，AI 一代比一代强——但「说清要什么」和「证明做对了」永远是人的活。你在第 1 章第一次念咒语时就在练它，第八周你只是练得更熟了。</p></details>
+    </div>
+
+    <div class="box box-aid">
+      <h3>翻车急救箱（自带数据特供）</h3>
+      <p><b>① 数据里有合并单元格 / 多级表头，AI 读出来是乱的</b><br>先在 Excel 里复制出规整版：一张 sheet、一行表头、不合并。改造是你最强的环节，别让 AI 猜你的表格美学。</p>
+      <p><b>② 日期变成 45123 这样的数字</b><br>Excel 的日期本质是「距 1900 年的天数」。对 AI 说：「这列是 Excel 序列日期，按 origin='1899-12-30' 换算成真日期」。</p>
+      <p><b>③ 几十万行，AI 跑一步卡半天</b><br>先抽样开发：让 AI「随机抽 1 万行先开发，功能全通过后再全量跑一遍」。开发用小数据，交付用全数据。</p>
+      <p><b>④ 体检发现负数金额</b><br>不一定是错——退货冲账常录负数。口径你定：算「退款」单列一项，还是当脏数据处理。定完让 AI 执行，写进体检报告。</p>
+      <p><b>⑤ 做到一半中断，隔周回来全忘了</b><br>三招恢复记忆：<code>git log --oneline</code> 看做过什么；打开学习笔记看踩过什么坑；重开 AI 会话，把「进度 + 现象」重新交代一遍。这也是为什么每一章都逼你写存档说明。</p>
+    </div>
+  </section>
+
+  <!-- 章尾导航 -->
+  <nav class="pager" aria-label="上一章下一章">
+    <a href="ch6.html"><span class="dir">← 上一章</span>第 6 章 · 开发流程全景</a>
+    <a class="next" href="index.html"><span class="dir dir-next">课程完 🎉</span>返回目录 · Vibe Coding 学院</a>
+  </nav>
+
+</main>
+</body>
+</html>
