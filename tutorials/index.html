@@ -9,20 +9,22 @@
 <body>
 <main class="page">
 
-  <!-- git 提交图导航（全站总览） -->
+  <!-- git 提交图导航（全站总览，点任意节点直达） -->
+  <div class="ggwrap">
   <nav aria-label="课程进度">
-    <ul class="gg">
-      <li class="done" data-n="0"><a href="ch0.html" aria-label="第0章">0</a><span class="gg-label">环境准备</span></li>
-      <li class="done" data-n="1"><a href="ch1.html" aria-label="第1章">1</a><span class="gg-label">第一次魔法</span></li>
-      <li data-n="2"><span aria-label="第2章">2</span><span class="gg-label">对话姿势</span></li>
-      <li data-n="3"><span aria-label="第3章">3</span><span class="gg-label">git 时光机</span></li>
-      <li data-n="4"><span aria-label="第4章">4</span><span class="gg-label">数据看板</span></li>
-      <li data-n="5"><span aria-label="第5章">5</span><span class="gg-label">协作剧场</span></li>
-      <li data-n="6"><span aria-label="第6章">6</span><span class="gg-label">流程全景</span></li>
-      <li data-n="7"><span aria-label="第7章">7</span><span class="gg-label">毕业项目</span></li>
+    <ul class="gg" style="--p:100%">
+      <li class="done"><a href="ch0.html">0</a><span class="gg-label">环境准备</span></li>
+      <li class="done"><a href="ch1.html">1</a><span class="gg-label">第一次魔法</span></li>
+      <li class="done"><a href="ch2.html">2</a><span class="gg-label">对话姿势</span></li>
+      <li class="done"><a href="ch3.html">3</a><span class="gg-label">git 时光机</span></li>
+      <li class="done"><a href="ch4.html">4</a><span class="gg-label">数据看板</span></li>
+      <li class="done"><a href="ch5.html">5</a><span class="gg-label">协作剧场</span></li>
+      <li class="done"><a href="ch6.html">6</a><span class="gg-label">流程全景</span></li>
+      <li class="done"><a href="ch7.html">7</a><span class="gg-label">毕业项目</span></li>
     </ul>
-    <p class="meta-line" style="text-align:center">main 分支 · 已更新 2 个提交 · <a href="ch0.html">从这里开始 →</a></p>
   </nav>
+  </div>
+  <p class="meta-line" style="text-align:center">main 分支 · 全部 8 章已上线 · <a href="ch0.html">从这里开始 →</a></p>
 
   <!-- 首屏 -->
   <header class="hero">
@@ -64,42 +66,42 @@
         <p>说出你的需求，看 AI 把销售表变成一张漂亮的网页报告。今晚就有成就感。</p>
         <span class="mins">≈ 30 分钟</span>
       </a>
-      <div class="card locked">
+      <a class="card" href="ch2.html">
         <span class="no">第 2 章</span>
         <h3>和 AI 对话的正确姿势</h3>
-        <p>同样的工具，为什么别人用得好？描述需求、给上下文、定验收标准。</p>
+        <p>同样的工具，为什么别人用得好？背景、任务、要求、验收——咒语四件套。</p>
         <span class="mins">≈ 45 分钟</span>
-      </div>
-      <div class="card locked">
+      </a>
+      <a class="card" href="ch3.html">
         <span class="no">第 3 章</span>
         <h3>git 时光机：给代码装上存档点</h3>
-        <p>像游戏存档一样保存每个版本，改坏了随时读档。</p>
+        <p>像游戏存档一样保存每个版本，改坏了随时读档，每次改动都有据可查。</p>
         <span class="mins">≈ 45 分钟</span>
-      </div>
-      <div class="card locked">
+      </a>
+      <a class="card" href="ch4.html">
         <span class="no">第 4 章</span>
         <h3>从脚本到页面：数据看板</h3>
-        <p>把报告升级成能点、能筛、能切换的 Streamlit 交互看板。</p>
+        <p>把报告升级成能点、能筛、能切换的 Streamlit 交互看板——你自己的小网站。</p>
         <span class="mins">≈ 60 分钟</span>
-      </div>
-      <div class="card locked">
+      </a>
+      <a class="card" href="ch5.html">
         <span class="no">第 5 章</span>
         <h3>协作剧场：一个人演完团队协作</h3>
-        <p>分饰 Alice 和 Bob 两个角色，亲手制造并解决一次合并冲突。</p>
+        <p>分饰 Alice 和 Bob 两个角色，亲手制造并解决一次真实的合并冲突。</p>
         <span class="mins">≈ 60 分钟</span>
-      </div>
-      <div class="card locked">
+      </a>
+      <a class="card" href="ch6.html">
         <span class="no">第 6 章</span>
         <h3>开发流程全景</h3>
-        <p>需求 → AI 生成 → 审查 → 验证 → 提交，专业团队的迭代循环。</p>
+        <p>需求 → AI 生成 → 审查 → 验证 → 提交，专业团队的迭代循环，你也可以拥有。</p>
         <span class="mins">≈ 45 分钟</span>
-      </div>
-      <div class="card locked">
+      </a>
+      <a class="card" href="ch7.html">
         <span class="no">第 7 章</span>
         <h3>毕业项目：用你自己的数据</h3>
-        <p>把你手头真实的表格变成一个给自己（或老板）用的小工具。</p>
+        <p>把你手头真实的表格变成一个给自己（或老板）用的小工具。拿到驾照，上路。</p>
         <span class="mins">≈ 60 分钟</span>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -110,7 +112,7 @@
       <h3>门槛比你想的低</h3>
       <p>✅ 一台普通电脑（Windows 或 Mac 都行）&nbsp;&nbsp;✅ 会用 Excel（懂 VLOOKUP 更好，不懂也行）&nbsp;&nbsp;✅ 每天能抽出半小时</p>
       <p>❌ 不需要任何编程基础 &nbsp;&nbsp;❌ 不需要数学 &nbsp;&nbsp;❌ 不需要英文好（课程全中文，命令照着敲就行）</p>
-      <p>AI 工具的接入有两条路：官方订阅，或国内可用的模型端点——第 0 章会带你二选一装好。</p>
+      <p>AI 工具的接入有两条路：官方订阅，或国内可用的模型端点——第 0 章会带你二选一装好。第 5 章需要一个免费 GitHub 账号（届时注册即可）。</p>
     </div>
   </section>
 

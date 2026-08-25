@@ -112,91 +112,102 @@ h1 {
   margin: 10px 0 0;
 }
 
-/* ---------- git 提交图进度导航（签名元素） ---------- */
+/* ---------- git 提交图导航（签名元素）：全节点可点击 ---------- */
+
+/* 横向滚动容器：窄屏时导航可滑动而不是丢掉标签 */
+.ggwrap { overflow-x: auto; margin: 0 -4px; padding: 2px 4px; }
 
 .gg {
+  --p: 6.25%;   /* 进度填充终点：填到当前章节点中心（index 页为 100%） */
   display: flex;
-  align-items: flex-start;
-  gap: 0;
-  margin: 30px 0 6px;
-  padding: 0;
   list-style: none;
+  margin: 36px 0 10px;
+  padding: 0;
+  position: relative;
+  min-width: 640px;
 }
 
-.gg li { flex: 1; text-align: center; position: relative; min-width: 0; }
-
-/* 连接线：由每个节点左侧伸出，最左一个不画 */
-.gg li::before {
+/* 贯穿线：橙色 = 已走过的进度，其余 = 还没走 */
+.gg::before {
   content: "";
   position: absolute;
-  top: 11px;
-  left: -50%;
-  width: 100%;
-  height: 3px;
-  background: var(--line);
+  top: 17px;
+  left: 1%;
+  right: 1%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,
+    var(--orange) 0%, var(--orange) var(--p),
+    var(--line) var(--p), var(--line) 100%);
 }
-.gg li:first-child::before { display: none; }
-/* 进入「已完成」或「当前」节点的连线染橙——进度走到哪，橙色连到哪 */
-.gg li.done::before,
-.gg li.cur::before { background: var(--orange); }
 
-.gg a, .gg span {
-  display: inline-block;
-  width: 25px;
-  height: 25px;
-  line-height: 23px;
+.gg li { width: 12.5%; text-align: center; }
+
+.gg a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   font-family: var(--mono);
-  font-size: 12px;
-  color: var(--muted);
+  font-size: 15px;
+  color: var(--ink-soft);
   background: var(--paper);
   border: 3px solid var(--line);
   position: relative;
   z-index: 1;
+  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
-.gg a { border-color: var(--muted); }
-.gg li.done a,
-.gg li.done span {
+.gg a:hover {
+  transform: translateY(-3px);
+  border-color: var(--orange);
+  box-shadow: var(--shadow);
+  text-decoration: none;
+}
+.gg li.done a {
   background: var(--orange);
   border-color: var(--orange);
   color: #fff;
 }
-.gg li.cur a,
-.gg li.cur span {
+.gg li.cur a {
   border-color: var(--orange);
   color: var(--orange);
-  background: var(--paper);
+  font-weight: 700;
 }
 
-/* HEAD 指针标签：当前章头顶的小气泡 */
-.gg li.cur::after {
-  content: "HEAD → 第" attr(data-n) "章";
+/* HEAD 指针：当前章头顶的小徽章 */
+.gg li.cur::before {
+  content: "HEAD";
   position: absolute;
   top: -24px;
   left: 50%;
   transform: translateX(-50%);
-  white-space: nowrap;
   font-family: var(--mono);
-  font-size: 11px;
-  color: var(--orange);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: var(--orange);
+  border-radius: 999px;
+  padding: 1px 9px;
+  z-index: 2;
 }
 
 .gg-label {
   display: block;
+  margin-top: 8px;
   font-size: 12px;
   color: var(--muted);
-  margin-top: 8px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
+.gg li.done .gg-label { color: var(--ink-soft); }
 .gg li.cur .gg-label { color: var(--orange); font-weight: 600; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .gg li.cur a, .gg li.cur span { animation: pulse 2.4s ease-in-out infinite; }
+  .gg li.cur a { animation: pulse 2.4s ease-in-out infinite; }
   @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(232, 99, 10, 0.35); }
-    50% { box-shadow: 0 0 0 7px rgba(232, 99, 10, 0); }
+    50% { box-shadow: 0 0 0 8px rgba(232, 99, 10, 0); }
   }
 }
 
@@ -490,8 +501,6 @@ td.num, th.num { text-align: right; font-family: var(--mono); }
   .page { padding: 24px 18px 56px; }
   .cards, .steps3 { grid-template-columns: 1fr; }
   .chat-user, .chat-ai { max-width: 100%; }
-  .gg-label { display: none; }
-  .gg li.cur::after { font-size: 10px; top: -22px; }
 }
 
 /* ---------- 动效偏好 ---------- */
