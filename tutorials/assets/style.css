@@ -318,6 +318,9 @@ kbd {
   border-bottom-right-radius: 4px;
   width: fit-content;
 }
+/* 选中态反转：全局 ::selection 是橙底白字，和本气泡同色，选中会完全看不见（像张图片）——反转为白底橙字。
+   两条选择器：元素自身 + 气泡内的 b/code 等内联元素（::selection 不继承） */
+.chat-user::selection, .chat-user ::selection { background: var(--card); color: var(--orange); }
 .chat-user::before { content: "👤 你说"; display: block; font-size: 12px; font-family: var(--mono); opacity: 0.85; margin-bottom: 4px; }
 .chat-ai {
   background: var(--card);
